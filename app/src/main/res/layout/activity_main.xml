@@ -18,5 +18,12 @@
         android:gravity="center"
         android:text="保存数据"/>
 
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="testJni"
+        android:id="@+id/btn_jni"
+        android:layout_gravity="center_horizontal" />
+
 
 </LinearLayout>
