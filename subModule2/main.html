@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+<!--HTML5 doctype-->
+<html>
+
+<head>
+    <title>trs</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" type="text/css" href="dist/css/af.ui.base.min.css" />
+    <!-- build:css assets/css/sse.min.css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/index.css" />
+    <!-- /build -->
+    <link rel="stylesheet" type="text/css" href="dist/css/swiper.min.css" />
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="dist/js/zepto.js"></script>
+    <script type="text/javascript" src="dist/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript">
+    jQuery.noConflict();
+    </script>
+    <script type="text/javascript" charset="utf-8" src="dist/js/appframework.ui.min.js"></script>
+    <script type="text/javascript" src="dist/js/fastclick.js"></script>
+    <script>
+    jQuery.afui.useOSThemes = false;
+    jQuery.afui.loadDefaultHash = true;
+    jQuery.afui.autoLaunch = false;
+    jQuery.afui.animateHeader(false);
+    jQuery(document).ready(function() {
+        jQuery.afui.launch();
+        FastClick.attach(document.body);
+    });
+
+
+    </script>
+</head>
+
+<body>
+    <div class="view active" id="mainview">
+        <header>
+            <!-- 主页面导航 -->
+            <div id="mainheader">
+                <div class="guidemask"></div>
+                <a href="#main"><img src="assets/img/icon_logo.png" alt=""></a>
+                <a href="#main" style="width: 2rem;height:1.8rem;position: absolute;display: block;"></a>
+                <div class="swiper-container headermenu">
+                    <div class="swiper-wrapper" id="nav">
+                    </div>
+                </div>
+            </div>
+            <!-- 带返回按钮导航 -->
+            <div id="backheader">
+                <h1>app front end framework</h1>
+                <a class='leftmenubtn backbutton'></a>
+            </div>
+            <div id="md_backheader">
+                <h1>app front end framework</h1>
+                <a class='leftmenubtn backbutton'></a>
+            </div>
+            <!-- 注册页面导航 -->
+            <div id="registerheader">
+                <h1>app front end framework</h1>
+                <a class='leftmenubtn backbutton'></a>
+                <a class='rightmenubtn next' id="regstep2" href="###">完成</a>
+                <a class='rightmenubtn finish' id="regbtn">完成</a>
+            </div>
+            <!--登陆-->
+            <div id="loginheader">
+                <h1>登录上证服务通行证</h1>
+                <a class='leftmenubtn backbutton'></a>
+                <a class='rightmenubtn ' id="loginbtn">登录</a>
+            </div>
+            <!--登陆-->
+            <div id="getbackheader">
+                <h1>找回密码</h1>
+                <a class='leftmenubtn backbutton'></a>
+                <a class='rightmenubtn ' id="getbackbtn">提交</a>
+            </div>
+            <!--修改密码-->
+            <div id="changepwheader">
+                <h1>修改密码</h1>
+                <a class='leftmenubtn backbutton'></a>
+                <a class='rightmenubtn ' id="changepwdbtn">提交</a>
+            </div>
+            <!--搜素-->
+            <div id="searchheader">
+                <a class='leftmenubtn backbutton'></a>
+                <h1>搜索</h1>
+            </div>
+            <!-- 用户协议 -->
+            <div id="agreementheader">
+                <h1>app front end framework</h1>
+                <a class='leftmenubtn backbutton'></a>
+            </div>
+            <!-- 反馈页面导航 -->
+            <div id="feedbackheader">
+                <h1>我的反馈</h1>
+                <a class='leftmenubtn backbutton'></a>
+                <a class='rightmenubtn' id="subfeedback" href="###">提交</a>
+            </div>
+            <div id="aboutheader">
+                <h1>关于</h1>
+                <a class='leftmenubtn backbutton'></a>
+                <a class='rightmenubtn' href="###"></a>
+            </div>
+            <div id="deleteheader">
+                <h1></h1>
+                <a class='leftmenubtn backbutton'></a>
+                <a class='rightmenubtn' href="###"></a>
+            </div>
+            <div id="optionalheader">
+                <h1>我的自选</h1>
+                <a class='leftmenubtn backbutton'></a>
+                <a class='rightmenubtn' id="addmystok" href="#op_search">添加</a>
+            </div>
+            <!--路演列表-->
+            <div id="roadshowlistheader">
+                <a class='leftmenubtn backbutton'></a>
+                <h1>浦发银行</h1>
+            </div>
+            <!--路演列表-->
+            <div id="etalkdetailheader">
+                <a class='leftmenubtn backbutton'></a>
+                <h1>浦发银行</h1>
+            </div>
+            <!--E互动提问-->
+            <div id="eactaskheader">
+                <a class='leftmenubtn backbutton'></a>
+                <a class='rightmenubtn' id="subeactask" href="###">提交</a>
+                <h1>提问</h1>
+            </div>
+            <!--E访谈提问-->
+            <div id="etalktaskheader">
+                <a class='leftmenubtn backbutton'></a>
+                <a class='rightmenubtn' id="subetalkask" href="###">提交</a>
+                <h1>提问</h1>
+            </div>
+            <!--路演提问-->
+            <div id="roadshowaskheader">
+                <a class='leftmenubtn backbutton'></a>
+                <a class='rightmenubtn' id="subroadshowask" href="###">提交</a>
+                <h1>提问</h1>
+            </div>
+            <!--配号中签-->
+            <div id="phzqheader">
+                <a class='leftmenubtn backbutton'></a>
+                <h1>配号中签信息</h1>
+            </div>
+
+            <!--股东卡号-->
+            <div id="stockholderheader">
+                <a class='leftmenubtn backbutton'></a>
+                <a class='rightmenubtn' href="#addShCard">添加</a>
+                <h1>我的股东账号</h1>
+            </div>
+
+            <!-- 绑定股东卡号 -->
+            <div id="addShheader">
+                <a class='leftmenubtn backbutton'></a>
+                <a class='rightmenubtn' href="####" content="next">下一步</a>
+                <h1>绑定股东账号</h1>
+            </div>
+        </header>
+        <!-- 互动 -->
+        <header id="actforumheader">
+            <div class="actforum_top">
+                <div class="js_acttab">
+                    <p class="eact active">&nbsp;</p>
+                    <p class="active">e互动</p>
+                </div>
+                <div class="js_acttab">
+                    <p class="etalk">&nbsp;</p>
+                    <p>e访谈</p>
+                </div>
+                <div class="js_acttab ">
+                    <p class="roadshow">&nbsp;</p>
+                    <p>路演</p>
+                </div>
+                <a id="acttabindex" class="tabtriangle eact">&nbsp;</a>
+            </div>
+        </header>
+        <!-- 专题二级页面导航 -->
+        <header class="topicheader">
+            <div class="topicheader01">
+                <h1>沪港通</h1>
+                <a class='leftmenubtn backbutton'></a>
+            </div>
+            <div class="topicheader02">
+                <h1>股票期权</h1>
+                <a class='leftmenubtn backbutton'></a>
+            </div>
+            <div class="topicheader03">
+                <h1>融资融券</h1>
+                <a class='leftmenubtn backbutton'></a>
+            </div>
+            <div class="topicheader04">
+                <h1>融资融券</h1>
+                <a class='leftmenubtn backbutton'></a>
+            </div>
+        </header>
+        <div class="pages mainpages">
+            <!--<div class="panel  lead" id="lead">-->
+            <!--<div class="swiper-container" style="height:100%;">-->
+            <!--<div class="swiper-wrapper">-->
+            <!--<div class="swiper-slide" id="banner01">-->
+            <!--&lt;!&ndash; <img src="assets/img/lead01.jpg" style="width:100%;height:100%" alt=""> &ndash;&gt;-->
+            <!--</div>-->
+            <!--<div class="swiper-slide" id="banner02">-->
+            <!--&lt;!&ndash; <img src="assets/img/lead02.jpg" style="width:100%;height:100%" alt=""> &ndash;&gt;-->
+            <!--</div>-->
+            <!--<div class="swiper-slide" id="banner03">-->
+            <!--&lt;!&ndash; <img src="assets/img/lead03.jpg" style="width:100%;height:100%" alt=""> &ndash;&gt;-->
+            <!--</div>-->
+            <!--<div class="swiper-slide" id="banner04">-->
+            <!--&lt;!&ndash; <img src="assets/img/lead04.jpg" style="width:100%;height:100%" alt=""> &ndash;&gt;-->
+            <!--<a >点击进入</a>-->
+            <!--<div id="leadtomain" class="handpoint"></div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="swiper-pagination"></div>-->
+            <!-- -->
+            <!--</div>-->
+            <!--</div>-->
+            <!-- lead panel end -->
+            <div class="panel main active" id="main" data-title="首页" panelindex='0'>
+                <div class="mainsearch">
+                    <input type="text" id="indexsearchtext" placeholder="搜索" readonly="readonly">
+                    <a href="#v_search" id="indexsearch" data-transition="none"></a>
+                </div>
+                <div class="overflow" id="indexlist">
+                    <div class="banner" id="banner">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <!-- <div class="swiper-slide">
+                                        <img src="assets/img/banner.png" alt="">
+                                        <div class="banner_title">title</div>
+                                    </div> -->
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                        <div class="bannercard" code="000001" codename="上证指数" codetype="EQU" codesubtype="OEQI" id="indexquotes">
+                        </div>
+                    </div>
+                    <div class="content">
+                        <!--<div class="hotpoint newsbox">-->
+                        <!--<a href="#oujiao" >投教专区</a>-->
+                        <!--</div>-->
+                        <div class="hotpoint newsbox">
+                            <div class="newstitle" id="hotarch"><img src="assets/img/icon_nt01.png" alt="" class="left">
+                                <h2 class="left">热点动态</h2><img src="assets/img/icon_nt03.png" alt="" class="right"></div>
+                            <ul class="list" id="indexhot">
+                            </ul>
+                        </div>
+                        <div class="hotpoint newsbox">
+                            <div class="newstitle" id="bulletinarch"><img src="assets/img/icon_nt02.png" alt="" class="left">
+                                <h2 class="left">公司公告</h2><img src="assets/img/icon_nt03.png" alt="" class="right"></div>
+                            <ul class="list" id="indexbulletin">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- main panel end -->
+            <div class="panel main" id="hotpoint" data-title='热点' panelindex='1'>
+                <div class="search">
+                    <div class="tab">
+                        <ul id="hotlist_type">
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="content tabbox" id="hotlist">
+                    <ul class="list">
+                    </ul>
+                </div>
+            </div>
+            <!-- hotpoint panel end -->
+            <!--</div>-->
+            <!-- hotpoint panel end -->
+            <div class="panel main" id="favorite" data-title='我的收藏'>
+                <div class="content" id="myfavlist">
+                    <ul class="list">
+                    </ul>
+                </div>
+            </div>
+            <!-- favorite panel end -->
+            <div class="panel back mine" id="optional" data-title='自选'>
+                <div class="op_title">
+                    <span>名称</span>
+                    <span>现价</span>
+                    <span>涨跌幅</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="content" id="mystocklist">
+                    <ul class="list">
+                    </ul>
+                </div>
+            </div>
+            <div class="panel main" id="bulletin" data-title='公告' panelindex='2'>
+                <div class="search">
+                    <div class="guidemask masktop"></div>
+                    <div class="guidemask maskbottom"></div>
+                    <div class="guidemask maskleft"></div>
+                    <div class="guidemask maskright"></div>
+                    <div class="guidemask maskblock"></div>
+                    <a id="bulletinlist_all" class="left all active">全</a>
+                    <a id="bulletinlist_custom" class="left mine">自</a>
+                    <div class="tab">
+                        <ul id="bulletin_type">
+                        </ul>
+                    </div>
+                </div>
+                <div class="guidemask maskpage"></div>
+                <div class="content tabbox" id="bulletin_list">
+                    <ul class="list tab1">
+                    </ul>
+                </div>
+            </div>
+            <!-- bulletin panel end -->
+            <div class="panel main" id="market" data-title='行情' panelindex='4'>
+                <div class="search">
+                    <div class="guidemask masktop"></div>
+                    <div class="guidemask maskbottom"></div>
+                    <div class="guidemask maskleft"></div>
+                    <div class="guidemask maskright"></div>
+                    <div class="guidemask maskblock"></div>
+                    <div class="guidemask" id="maskstep02"></div>
+                    <a href="###" id="marketbtn_all" class="left all active">全</a>
+                    <a href="###" id="marketbtn_self" class="left mine">自</a>
+                    <div class="searchbox">
+                        <input id="quotes_search" type="text" placeholder="搜索" readonly="readonly">
+                        <a href="#v_search" id="indexsearch" data-transition="none"></a>
+                    </div>
+                </div>
+                <div class="guidemask maskpage mp01"></div>
+                <div class="guidemask maskpage mp02"></div>
+                <div class="guidemask maskpage mp03"></div>
+                <div class="guidemask maskblock mp04"></div>
+                <div id="js_list">
+                    <div class="indexbox">
+                        <div class="index">
+                            <ul id="market_index">
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="indexbox" id="mktselfnone" style="text-align: center;background-color:#f0f0f0;display: none;">
+                        <div style="font-size: 0.8rem;color:#a0a0a0;width:12rem;background-color:#f0f0f0;margin-left:14%;text-align: center;word-break: break-all;">
+                            没有与您自选股相关的信息，您还没有自选股哟！
+                        </div>
+                    </div>
+                    <div class="left js_mktdata">
+                        <table id="quotes_namelist">
+                            <tr class="top">
+                                <th>名称</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="left2 js_mktdata">
+                        <table id="quotes_datalist">
+                            <tr class="top">
+                                <th>最新</th>
+                                <th>涨跌%</th>
+                                <th>成交量(万手)</th>
+                                <th>最高</th>
+                                <th>最低</th>
+                                <th>开盘</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="clear: both;"></div>
+                </div>
+            </div>
+            <!-- market panel end -->
+            <div class="panel" id="market_detail" data-title='南京银行'>
+                <div class="tab">
+                    <ul>
+                        <li class="active" tab="tab1">公告</li>
+                        <li tab="tab2">日历</li>
+                        <li tab="tab3">e互动</li>
+                    </ul>
+                </div>
+                <div class="tab1 tabbox" id="market_bulltin">
+                    <div>
+                        <ul class="list">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- market_detail -->
+            <div class="panel main" id="watchcontrol" data-title='监管' panelindex='6'>
+                <div class="search">
+                    <a href="###" id="watchctrl_all" class="left all active">全</a>
+                    <a href="###" id="watchctrl_self" class="left mine">自</a>
+                    <div class="tab">
+                        <ul id="watchcontroltype">
+                        </ul>
+                    </div>
+                </div>
+                <div class="indexbox" id="watchcontrolselfnone" style="text-align: center;background-color:#e7ecf1; display: none; margin-top: 2.9rem;">
+                    <div style="font-size: 0.8rem;color:#a0a0a0;width:12rem;background-color:#e7ecf1;margin-left:14%;text-align: center;word-break: break-all;">
+                        没有与您自选股相关的信息，您还没有自选股哟！
+                    </div>
+                </div>
+                <div class="content tabbox" id="watchcontrollist">
+                    <ul class="list tab1">
+                    </ul>
+                </div>
+            </div>
+            <!-- watchcontrol panel end -->
+            <div class="panel" id="data" data-title='数据' panelindex='5'>
+                <div class="data_date">
+                    <p id="data_curdate"></p>
+                </div>
+                <div class="block data_gg">
+                    <div class="left one">
+                        <p>上市公司</p>
+                        <h3 id="upcompany"></h3>
+                        <span>家</span>
+                    </div>
+                    <div class="right one">
+                        <p>上市证券</p>
+                        <h3 id="upsecurities"></h3>
+                        <span>只</span>
+                    </div>
+                    <div class="clear"></div>
+                    <!-- </div> -->
+                    <!-- <div class="block data_gs"> -->
+                    <div class="left two">
+                        <p>上市股票</p>
+                        <h3 id="upstock"></h3>
+                        <span>只</span>
+                    </div>
+                    <div class="right two">
+                        <p>平均市盈率/倍</p>
+                        <h3 id="avg"></h3>
+                        <span>倍</span>
+                    </div>
+                    <!-- <div class="clear"></div> -->
+                </div>
+                <div class="block circle">
+                    <div class="left stock">
+                        <div class="display">
+                            <h3>88</h3>
+                            <span>%</span>
+                            <!-- <p>总股本/亿</p> -->
+                        </div>
+                        <ul class="progress">
+                            <li data-name="CSS Skill" data-percent="24%">
+                                <svg viewBox="-10 -10 220 220">
+                                    <g fill="none" stroke-width="6" transform="translate(100,100)">
+                                        <path d="M 0,-100 A 100,100 0 0,1 86.6,-50" stroke="#8bc5ff" />
+                                        <path d="M 86.6,-50 A 100,100 0 0,1 86.6,50" stroke="#8bc5ff" />
+                                        <path d="M 86.6,50 A 100,100 0 0,1 0,100" stroke="#8bc5ff" />
+                                        <path d="M 0,100 A 100,100 0 0,1 -86.6,50" stroke="#8bc5ff" />
+                                        <path d="M -86.6,50 A 100,100 0 0,1 -86.6,-50" stroke="#8bc5ff" />
+                                        <path d="M -86.6,-50 A 100,100 0 0,1 0,-100" stroke="#8bc5ff" />
+                                    </g>
+                                </svg>
+                                <svg viewBox="-10 -10 220 220">
+                                    <path d="M200,100 C200,44.771525 155.228475,0 100,0 C44.771525,0 0,44.771525 0,100 C0,155.228475 44.771525,200 100,200 C155.228475,200 200,155.228475 200,100 Z" stroke-dashoffset="629"></path>
+                                </svg>
+                            </li>
+                        </ul>
+                        <ul class="progress in">
+                            <li data-name="CSS Skill" data-percent="24%">
+                                <svg viewBox="-10 -10 220 220">
+                                    <g fill="none" stroke-width="6" transform="translate(100,100)">
+                                        <path d="M 0,-100 A 100,100 0 0,1 86.6,-50" stroke="#5e88f6" />
+                                        <path d="M 86.6,-50 A 100,100 0 0,1 86.6,50" stroke="#5e88f6" />
+                                        <path d="M 86.6,50 A 100,100 0 0,1 0,100" stroke="#5e88f6" />
+                                        <path d="M 0,100 A 100,100 0 0,1 -86.6,50" stroke="#5e88f6" />
+                                        <path d="M -86.6,50 A 100,100 0 0,1 -86.6,-50" stroke="#5e88f6" />
+                                        <path d="M -86.6,-50 A 100,100 0 0,1 0,-100" stroke="#5e88f6" />
+                                    </g>
+                                </svg>
+                                <svg viewBox="-10 -10 220 220">
+                                    <path d="M200,100 C200,44.771525 155.228475,0 100,0 C44.771525,0 0,44.771525 0,100 C0,155.228475 44.771525,200 100,200 C155.228475,200 200,155.228475 200,100 Z" stroke-dashoffset="0"></path>
+                                </svg>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="right stock">
+                        <h3 class="all" id="totalequity"></h3>
+                        <span>亿</span>
+                        <p>总股本</p>
+                        <h3 class="cir" id="totaloutstandingcapital"></h3>
+                        <span>亿</span>
+                        <p>总流通股本</p>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="left m_value">
+                        <div class="display">
+                            <h3>82</h3>
+                            <span>%</span>
+                            <!-- <p>总股本/亿<  /p> -->
+                        </div>
+                        <ul class="progress">
+                            <li data-name="CSS Skill" data-percent="54%">
+                                <svg viewBox="-10 -10 220 220">
+                                    <g fill="none" stroke-width="6" transform="translate(100,100)">
+                                        <path d="M 0,-100 A 100,100 0 0,1 86.6,-50" stroke="#a2e4ec" />
+                                        <path d="M 86.6,-50 A 100,100 0 0,1 86.6,50" stroke="#a2e4ec" />
+                                        <path d="M 86.6,50 A 100,100 0 0,1 0,100" stroke="#a2e4ec" />
+                                        <path d="M 0,100 A 100,100 0 0,1 -86.6,50" stroke="#a2e4ec" />
+                                        <path d="M -86.6,50 A 100,100 0 0,1 -86.6,-50" stroke="#a2e4ec" />
+                                        <path d="M -86.6,-50 A 100,100 0 0,1 0,-100" stroke="#a2e4ec" />
+                                    </g>
+                                </svg>
+                                <svg viewBox="-10 -10 220 220">
+                                    <path d="M200,100 C200,44.771525 155.228475,0 100,0 C44.771525,0 0,44.771525 0,100 C0,155.228475 44.771525,200 100,200 C155.228475,200 200,155.228475 200,100 Z" stroke-dashoffset="629"></path>
+                                </svg>
+                            </li>
+                        </ul>
+                        <ul class="progress in">
+                            <li data-name="CSS Skill" data-percent="24%">
+                                <svg viewBox="-10 -10 220 220">
+                                    <g fill="none" stroke-width="6" transform="translate(100,100)">
+                                        <path d="M 0,-100 A 100,100 0 0,1 86.6,-50" stroke="#45b6f6" />
+                                        <path d="M 86.6,-50 A 100,100 0 0,1 86.6,50" stroke="#45b6f6" />
+                                        <path d="M 86.6,50 A 100,100 0 0,1 0,100" stroke="#45b6f6" />
+                                        <path d="M 0,100 A 100,100 0 0,1 -86.6,50" stroke="#45b6f6" />
+                                        <path d="M -86.6,50 A 100,100 0 0,1 -86.6,-50" stroke="#45b6f6" />
+                                        <path d="M -86.6,-50 A 100,100 0 0,1 0,-100" stroke="#45b6f6" />
+                                    </g>
+                                </svg>
+                                <svg viewBox="-10 -10 220 220">
+                                    <path d="M200,100 C200,44.771525 155.228475,0 100,0 C44.771525,0 0,44.771525 0,100 C0,155.228475 44.771525,200 100,200 C155.228475,200 200,155.228475 200,100 Z" stroke-dashoffset="0"></path>
+                                </svg>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="right m_value">
+                        <h3 class="all" id="totalmoney"></h3>
+                        <span>亿</span>
+                        <p>总市值</p>
+                        <h3 class="cir" id="totaloutmoney"></h3>
+                        <span>亿</span>
+                        <p>总流通市值</p>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <!-- data panel end -->
+            <div class="panel" id="wc_fliter" data-title='日历筛选'>
+                <p id="wc_fliter_all" class="active">全部</p>
+                <ul class="list" id="wc_fliter_list">
+                    <li id="set1" datatype="1" class="active">停复牌</li>
+                    <li id="set2" datatype="2" class="active">分红送转/除权除息</li>
+                    <li id="set3" datatype="3" class="active">IPO信息</li>
+                    <li id="set4" datatype="4" class="active">股东大会</li>
+                    <li id="set5" datatype="5" class="active">E访谈</li>
+                    <li id="set6" datatype="6" class="active">路演</li>
+                    <!--<li id="set6" datatype="7">期权挂牌信息</li>-->
+                </ul>
+                <footer><a href="###" id="fliter_sub">确认</a></footer>
+            </div>
+            <!-- wc_fliter panel end -->
+            <div class="panel" id="bulletin_detail" data-title=''>
+                <div class="content" id="article_detail">
+                    <h3 id="arttitle">上证公告（监察）〔2015〕0117号</h3>
+                    <p id="artcontent">N航信转（110031）今日上午交易出现异常波动。根据《上海证券交易所交易规则》和《上海证券交易所证券异常交易实时监控细则》的有关规定，本所决定，自2015年06月30日10时04分开始暂停N航信转（110031）交易，自2015年06月30日14时55分起恢复交易。</p>
+                </div>
+                <div class="footer">
+                    <a href="###" class="goback"></a>
+                    <a href="###" id="fontsize" class="fontsize active"></a>
+                    <a href="###" class="share" id="detail_share"></a>
+                    <a href="###" id="addfav" class="addfav"></a>
+                </div>
+            </div>
+            <!-- bulletin_datail panel end -->
+            <div class="panel main" id="date" data-title='日历' panelindex='3'>
+                <div class="search">
+                    <div class="guidemask"></div>
+                    <a href="###" id="date_all" class="left all active">全</a>
+                    <a href="###" id="date_self" class="left mine">自</a>
+                    <div class="searchbox">
+                        <input id="calendar_search" type="text" placeholder="搜索" readonly="readonly">
+                        <a href="#v_search" id="indexsearch" data-transition="none"></a>
+                    </div>
+                    <a href="#wc_fliter" class="wc_flitebtn">
+                        <!-- <div class="wc_flitebtndiv"></div> -->
+                        <img src="assets/img/icon_fliter.png" alt=""></a>
+                </div>
+                <!-- <div class="date1"> -->
+                <!-- <input type="text" id="datepicker"> -->
+                <div class="weekbox">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                        </div>
+                        <!-- Add Pagination -->
+                    </div>
+                </div>
+                <div class="calendarbox">
+                    <p class="datetitle">2000-00</p>
+                    <a href="###" class="backtoday">今天</a>
+                    <table>
+                        <tr>
+                            <th>日</th>
+                            <th>一</th>
+                            <th>二</th>
+                            <th>三</th>
+                            <th>四</th>
+                            <th>五</th>
+                            <th>六</th>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="guidemask maskpage"></div>
+                <div class="guidemask maskblock"></div>
+                <!-- </div> -->
+                <div class="content" id="calendarlist">
+                    <div>
+                    </div>
+                </div>
+            </div>
+            <!-- date panel end -->
+            <div class="panel back" id="date_list" data-title=''>
+                <div class="content" id="suspensionlist">
+                    <p id="suspensionnum"></p>
+                    <ul class="list">
+                    </ul>
+                </div>
+            </div>
+            <div class="panel" id="detail" data-title='detail'>
+                <p>详情页</p>
+            </div>
+            <!-- detail panel end -->
+            <div class="panel back" id="search" data-title='搜索'>
+                <div class="search">
+                    <div class="searchSelect">
+                        <a href="###" class="sSelect" datatype="2">标题</a>
+                        <ul>
+                            <li><a href="###">全文</a></li>
+                            <li><a href="###">标题</a></li>
+                        </ul>
+                    </div>    
+                    <input type="text" id="schtext" placeholder="请输入关键字或股票代码">
+                    <a href="#v_search"></a>
+                </div>
+                <div class="search_result" id='searchlist'>
+                    <ul class="s_hotentry" id="schhot">
+                        <li>
+                            <p>热门搜索</p>
+                        </li>
+                        <li id="schhotlist">
+                        </li>
+                    </ul>
+                    <ul class="s_hotentry" id="schhistory">
+                        <li>
+                            <p>搜索历史</p>
+                        </li>
+                        <li id="hotkeylist">
+                        </li>
+                    </ul>
+                    <ul id="s_history" class="s_history" style="display: none;">
+                    </ul>
+                    <ul id="s_result" class="s_result" style="display: none;">
+                    </ul>
+                </div>
+            </div>
+            <!-- search panel end -->
+            <div class="panel back" id="other_search" data-title='行情搜索'>
+                <div class="search">
+                   <!--  <div class="searchSelect">
+                        <a href="###" class="sSelect">全文</a>
+                        <ul>
+                            <li><a href="###">全文</a></li>
+                            <li><a href="###">标题</a></li>
+                        </ul>
+                    </div>    -->
+                    <input type="text" id="oschtext" placeholder="请输入股票名称或股票代码">
+                    <a style="display: none" href="#v_search"></a>
+                </div>
+                <div class="search_result">
+                    <ul class="s_hotentry" id="oschhistory">
+                        <li>
+                            <p>热门搜索</p>
+                        </li>
+                        <li id="hotkey"></li>
+                    </ul>
+                    <ul id="os_history" class="s_history" style="display: none;">
+                    </ul>
+                    <ul id="os_result" class="s_result" style="display: none;">
+                    </ul>
+                </div>
+            </div>
+            <!-- other search panel -->
+            <div class="panel back" id="v_search" data-title='语音搜索'>
+                <div class="searchstart">
+                    <h1>说出关键字或股票代码</h1>
+                    <img src="assets/img/vs_icon.gif" style="height:3.275rem;width:9.325rem" alt="">
+                </div>
+                <div class="identify">
+                    <h1>正在识别您的话...</h1>
+                </div>
+                <div class="searching">
+                    <h2>"上证"</h2>
+                    <p>正在为您搜索：</p>
+                    <p class="s_result">上证</p>
+                    <a href="###" class="searchbtn">点击重新录音</a>
+                </div>
+                <div class="search_fail">
+                    <p>未识别出您说的话</p>
+                    <p>请点击话筒重说</p>
+                    <a href="###" class="searchbtn"></a>
+                </div>
+            </div>
+            <!-- search panel end -->
+            <div class="panel" id="op_search" data-title='添加自选'>
+                <div class="search">
+                    <input type="text" id="myselfsearch" placeholder="请输入关键字或股票代码">
+                    <a href="#v_search"></a>
+                </div>
+                <div class="search_result" id="stocksearchlist">
+                    <ul class="s_hotentry" id="selfschhistory1">
+                        <li>
+                            <p>搜索历史</p>
+                        </li>
+                        <li id="selfhotkeylist"></li>
+                    </ul>
+                    <ul class="s_add" id="myselfschlist">
+                        <!-- <li><a href="###">600101明星电力</a>
+            <a href="###" code="" class="js_addfav"></a>
+        </li> -->
+                    </ul>
+                </div>
+            </div>
+            <!-- op_search panel end -->
+            <div class="panel" id="actforum" data-title='互动首页'>
+                <div id="actforum_eact" style="display: block;">
+                    <div class="eacttab" style="width: 100%">
+                        <a class="active" datatype="qa">答复</a>
+                        <a datatype="q">提问</a>
+                        <a datatype="hot">热门</a>
+                        <a datatype="hotpush">热推</a>
+                    </div>
+                    <div id="actforum_eact_list">
+                        <div>
+                            <ul class="list">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="etalk" style="display: none">
+                    <div id="etalknow" class="etalk_split">
+                        最近访谈
+                    </div>
+                    <div class="etalk_live" id="etalklive">
+                        <ul class="list">
+
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                    <div id="etalkold" class="etalk_split">
+                        精彩回顾
+                    </div>
+                    <div class="etalk_live" id="etalkhistory">
+                        <ul class="list">
+
+                        </ul>
+                    </div>
+                </div>
+                <div id="roadshow" style="display: none;">
+                    <div id="roadshownow" class="etalk_split">
+                        最新路演
+                    </div>
+                    <div class="etalk_live" id="roadshowlive">
+                        <ul class="list">
+
+                        </ul>
+                    </div>
+                    <div id="roadshowold" class="etalk_split">
+                        路演回顾
+                    </div>
+                    <div class="etalk_live" id="roadshowhistory">
+                        <ul class="list">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="ask" id="eactaskbtn">
+                <img src="assets/img/askbtn.png">
+            </div>
+            <!--actforum panel  end-->
+            <div class="panel" id="roadshowlist" data-title='浦发银行'>
+                <div class="eacttab">
+                    <a class="active js_roadshowlist">互动交流</a>
+                    <a class=" js_guests">嘉宾介绍</a>
+
+                </div>
+                <div id="roadshowactivelist" style="display: block;">
+                    <div>
+                        <ul class="list">
+
+                        </ul>
+                    </div>
+                </div>
+                <div id="guestsnote" style="display: none;">
+                    <ul class="list">
+
+                    </ul>
+                </div>
+
+            </div>
+            <div class="ask" id="roadshowactivetaskbtn" style="display: none;">
+                <img src="assets/img/askbtn.png">
+            </div>
+            <!-- roadshowlist panel end -->
+            <div class="panel" id="etalkdetail" data-title='青岛啤酒'>
+                <div class="eacttab">
+                    <a class="active js_roadshowlist">互动交流</a>
+                    <a class=" js_guests">访谈介绍</a>
+
+                </div>
+                <div id="etalknote" style="display: none;">
+                    <div>
+                        <h3></h3>
+                        <div class="notecontent">
+
+                        </div>
+                    </div>
+                    <div class="etalk_split">
+                        访谈嘉宾
+                    </div>
+                    <ul class="list">
+
+                    </ul>
+                </div>
+                <div id="etalklist" style="display: block;margin: 0;">
+                    <div>
+                        <ul class="list">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="ask" id="etalkaskbtn" style="display: none;">
+                <img src="assets/img/askbtn.png">
+            </div>
+            <!-- roadshowlist panel end -->
+            <div class="panel" id="topic" data-title='专题'>
+                <a href="#topic01"><img src="assets/img/topic01.png" alt=""></a>
+                <a href="#topic02"><img src="assets/img/topic02.png" alt=""></a>
+                <a href="#topic03"><img src="assets/img/topic03.png" alt=""></a>
+                <!-- <a href="#topic04"><img src="assets/img/topic04.png" alt=""></a> -->
+            </div>
+            <!-- topic panel end -->
+            <div class="panel topic" id="topic01" data-title='沪港通'>
+                <div class="part notice">
+                    <div class="parttitle">
+                        <h3 class="left bul_icon">公告</h3>
+                        <a href="#topic01_detail" class="right">更多</a>
+                        <div class='clear'></div>
+                    </div>
+                    <ul class="list" id="topic1_bulltin">
+                    </ul>
+                </div>
+                <div class="part control">
+                    <div class="parttitle">
+                        <h3 class="left ana_icon">额度控制信息</h3>
+                        <h4 class="left" id="limitcontrol_date"></h4>
+                        <!--<a href="###" class="right">更多</a>-->
+                        <div class='clear'></div>
+                    </div>
+                    <div class="circle left">
+                        <div class="display">
+                            <h3 id="hgt_day"><span>百万</span></h3>
+                            <p>当日额度余额</p>
+                            <h4 id="hgt_daytotal"><span>百万</span></h4>
+                            <p>总额</p>
+                        </div>
+                        <ul class="progress">
+                            <li data-name="CSS Skill" data-percent="54%">
+                                <svg viewBox="-10 -10 220 220">
+                                    <g fill="none" stroke-width="6" transform="translate(100,100)">
+                                        <path d="M 0,-100 A 100,100 0 0,1 86.6,-50" stroke="#c3c3ff" />
+                                        <path d="M 86.6,-50 A 100,100 0 0,1 86.6,50" stroke="#c3c3ff" />
+                                        <path d="M 86.6,50 A 100,100 0 0,1 0,100" stroke="#c3c3ff" />
+                                        <path d="M 0,100 A 100,100 0 0,1 -86.6,50" stroke="#c3c3ff" />
+                                        <path d="M -86.6,50 A 100,100 0 0,1 -86.6,-50" stroke="#c3c3ff" />
+                                        <path d="M -86.6,-50 A 100,100 0 0,1 0,-100" stroke="#c3c3ff" />
+                                    </g>
+                                </svg>
+                                <svg viewBox="-10 -10 220 220">
+                                    <path d="M200,100 C200,44.771525 155.228475,0 100,0 C44.771525,0 0,44.771525 0,100 C0,155.228475 44.771525,200 100,200 C155.228475,200 200,155.228475 200,100 Z" stroke-dashoffset="629"></path>
+                                </svg>
+                            </li>
+                        </ul>
+                        <ul class="progress in">
+                            <li data-name="CSS Skill" data-percent="24%">
+                                <svg viewBox="-10 -10 220 220">
+                                    <g fill="none" stroke-width="6" transform="translate(100,100)">
+                                        <path d="M 0,-100 A 100,100 0 0,1 86.6,-50" stroke="#7676db" />
+                                        <path d="M 86.6,-50 A 100,100 0 0,1 86.6,50" stroke="#7676db" />
+                                        <path d="M 86.6,50 A 100,100 0 0,1 0,100" stroke="#7676db" />
+                                        <path d="M 0,100 A 100,100 0 0,1 -86.6,50" stroke="#7676db" />
+                                        <path d="M -86.6,50 A 100,100 0 0,1 -86.6,-50" stroke="#7676db" />
+                                        <path d="M -86.6,-50 A 100,100 0 0,1 0,-100" stroke="#7676db" />
+                                    </g>
+                                </svg>
+                                <svg viewBox="-10 -10 220 220">
+                                    <path d="M200,100 C200,44.771525 155.228475,0 100,0 C44.771525,0 0,44.771525 0,100 C0,155.228475 44.771525,200 100,200 C155.228475,200 200,155.228475 200,100 Z" stroke-dashoffset="579"></path>
+                                </svg>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="right">
+                        <p>港股通交易日</p><span id="mktstatus_third"></span>
+                        <br>
+                        <p>买入申报状态</p><span id="mktstatus_first"></span>
+                        <br>
+                        <p>卖出申报状态</p><span id="mktstatus_second"></span>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="part price">
+                    <div class="parttitle">
+                        <h3 class="left mar_icon">股指行情</h3>
+                        <h4 class="left" id="hgt_limitcontrol_date"></h4>
+                        <!--<a href="###" class="right">更多</a>-->
+                        <div class='clear'></div>
+                    </div>
+                    <table id="hgt_limitcontrol">
+                    </table>
+                </div>
+                <div class="part e_rate">
+                    <div class="parttitle">
+                        <h3 class="left rate_icon">参考汇率</h3>
+                        <h4 class="left" id="ckhl_date"></h4>
+                        <!--<a href="###" class="right">更多</a>-->
+                        <div class='clear'></div>
+                    </div>
+                    <div class="lr">
+                        <p>参考汇率买入价</p><span id="ckhl_buy"></span>
+                        <div class="clear"></div>
+                        <p>参考汇率卖出价</p><span id="ckhl_sell"></span>
+                        <div class="clear"></div>
+                        <p>货币种类</p><span id="ckhl_currency"></span>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="part fe_rate">
+                    <div class="parttitle">
+                        <h3 class="left rate_icon">结算汇兑比率</h3>
+                        <h4 class="left" id="jshz_date"></h4>
+                        <!--<a href="###" class="right">更多</a>-->
+                        <div class='clear'></div>
+                    </div>
+                    <div class="lr">
+                        <p>买入结算汇兑比率</p><span id="jshz_buy"></span>
+                        <div class="clear"></div>
+                        <p>卖出结算汇兑比率</p><span id="jshz_sell"></span>
+                        <div class="clear"></div>
+                        <p>货币种类</p><span id="jshz_currency"></span>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="part barchart">
+                    <div class="tab">
+                        <a href="###" id="tab1" class="active">成交金额(亿元)</a>
+                        <a href="###" id="tab2">成交笔数(万笔)</a>
+                    </div>
+                    <div class="note">
+                        <div class="block1"></div>
+                        <h3>上一日</h3>
+                        <p id="yesterday"></p>
+                        <div class="block2"></div>
+                        <h3>交易日</h3>
+                        <p id="today"></p>
+                        <!-- <img src="assets/img/bar.png" alt=""> -->
+                        <div class="chart">
+
+                            <div>
+                                <span>买入</span>
+                                <div class="bar bar01">
+                                    <div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <span class="chartvalue01" id="yesterdaybuy"></span>
+                                <div class="bar bar02">
+                                    <div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <span class="chartvalue02" id="todaybuy"></span>
+                                <div class="clear"></div>
+                            </div>
+                            <div>
+                                <span>卖出</span>
+                                <div class="bar bar03">
+                                    <div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <span class="chartvalue01" id="yesterdaysell"></span>
+                                <div class="bar bar04">
+                                    <div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <span class="chartvalue02" id="todaysell"></span>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <!--<span class="barchart_line">20</span>-->
+                    </div>
+                    <div></div>
+                </div>
+                <div id="hgtweb" class="topic_link left">
+                    <p>沪股通</p>
+                </div>
+                <div id="hgttjzqweb" class="topic_link right">
+                    <p>沪港通</p>
+                    <span>投资者的教育专栏</span>
+                </div>
+            </div>
+            <!-- topic01 panel end -->
+            <div class="panel topic" id="topic02" data-title='股票期权'>
+                <div class="part notice">
+                    <div class="parttitle">
+                        <h3 class="left bul_icon">最新信息</h3>
+                        <a href="#topic02_detail" class="right">更多</a>
+                        <div class='clear'></div>
+                    </div>
+                    <ul class="list" id="topic2_list">
+                    </ul>
+                </div>
+                <div class="part control">
+                    <div class="parttitle">
+                        <h3 class="left ana_icon">每日统计</h3>
+                        <h4 class="left" id="topic2_date"></h4>
+                        <!--<a href="###" class="right">更多</a>-->
+                        <div class='clear'></div>
+                    </div>
+                    <div class="left topic_card">
+                        <p>合约标的代码</p>
+                        <h1 id="topic2_code"></h1>
+                    </div>
+                    <div class="right topic_card">
+                        <p>合约标的名称</p>
+                        <h1 id="topic2_hyname"></h1>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="circle left">
+                        <div class="display deal">
+                            <h3 id="mrtj1"></h3>
+
+                        </div>
+                        <ul class="progress deal">
+                            <li data-name="CSS Skill" data-percent="54%">
+                                <svg viewBox="-10 -10 220 220">
+                                    <g fill="none" stroke-width="6" transform="translate(100,100)">
+                                        <path d="M 0,-100 A 100,100 0 0,1 86.6,-50" stroke="#5e88f6" />
+                                        <path d="M 86.6,-50 A 100,100 0 0,1 86.6,50" stroke="#5e88f6" />
+                                        <path d="M 86.6,50 A 100,100 0 0,1 0,100" stroke="#5e88f6" />
+                                        <path d="M 0,100 A 100,100 0 0,1 -86.6,50" stroke="#5e88f6" />
+                                        <path d="M -86.6,50 A 100,100 0 0,1 -86.6,-50" stroke="#5e88f6" />
+                                        <path d="M -86.6,-50 A 100,100 0 0,1 0,-100" stroke="#5e88f6" />
+                                    </g>
+                                </svg>
+                                <svg viewBox="-10 -10 220 220">
+                                    <path id='dealcircle' d="M200,100 C200,44.771525 155.228475,0 100,0 C44.771525,0 0,44.771525 0,100 C0,155.228475 44.771525,200 100,200 C155.228475,200 200,155.228475 200,100 Z" stroke-dashoffset="400"></path>
+                                </svg>
+
+                            </li>
+                        </ul>
+                        <div id="metj1tip" class="mrtjtip">认沽/认购%</div>
+                    </div>
+                    <div class="right">
+                        <p>总成交量<span class="dc_1st" id="topic2_cjtotal"></span><span class="dc_1st">张</span></p>
+                        <p>认购成交量<span class="dc_2nd" id="topic2_rgtotal"></span><span class="dc_2nd">张</span></p>
+                        <p>认沽成交量<span class="dc_3th" id="topic2_rengutotal"></span><span class="dc_3th">张</span></p>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="circle left">
+                        <div class="display contract">
+                            <h3 id="mrtj2"></h3>
+                        </div>
+                        <ul class="progress contract">
+                            <li data-name="CSS Skill" data-percent="54%">
+                                <svg viewBox="-10 -10 220 220">
+                                    <g fill="none" stroke-width="6" transform="translate(100,100)">
+                                        <path d="M 0,-100 A 100,100 0 0,1 86.6,-50" stroke="#7676db" />
+                                        <path d="M 86.6,-50 A 100,100 0 0,1 86.6,50" stroke="#7676db" />
+                                        <path d="M 86.6,50 A 100,100 0 0,1 0,100" stroke="#7676db" />
+                                        <path d="M 0,100 A 100,100 0 0,1 -86.6,50" stroke="#7676db" />
+                                        <path d="M -86.6,50 A 100,100 0 0,1 -86.6,-50" stroke="#7676db" />
+                                        <path d="M -86.6,-50 A 100,100 0 0,1 0,-100" stroke="#7676db" />
+                                    </g>
+                                </svg>
+                                <svg viewBox="-10 -10 220 220">
+                                    <path id='contractcircle' d="M200,100 C200,44.771525 155.228475,0 100,0 C44.771525,0 0,44.771525 0,100 C0,155.228475 44.771525,200 100,200 C155.228475,200 200,155.228475 200,100 Z" stroke-dashoffset="400"></path>
+                                </svg>
+                            </li>
+                        </ul>
+                        <div id="metj2tip" class="mrtjtip">认沽/认购%</div>
+                    </div>
+                    <div class="right contract">
+                        <p>合约总量<span class="cc_1st" id="topic2_hytotal"></span><span class="cc_1st">张</span></p>
+                        <p>认购合约<span class="cc_2nd" id="topic2_hyrgtotal"></span><span class="cc_2nd">张</span></p>
+                        <p>认沽合约<span class="cc_3th" id="topic2_hyrengutal"></span><span class="cc_3th">张</span></p>
+                    </div>
+                </div>
+                <div id="gpqqweb" class="topic_link left">
+                    <p>股票期权</p>
+                    <p>投教专区</p>
+                </div>
+                <div id="szqqapp" class="topic_link right">
+                    <img src="assets/img/app_icon.png" alt="">
+                    <p>点击下载安装
+                        <br>上证期权App</p>
+                </div>
+            </div>
+            <!-- topic02 panel end -->
+            <div class="panel topic" id="topic03" data-title='融资融券'>
+                <div>
+                    <div class="part notice">
+                        <div class="parttitle">
+                            <h3 class="left">通知公告</h3>
+                            <a href="#topic03_detail" class="right">更多</a>
+                            <div class='clear'></div>
+                        </div>
+                        <ul class="list" id="topic3_list">
+                        </ul>
+                    </div>
+                    <div class="part e_rate">
+                        <div class="parttitle">
+                            <h3 class="left" style="width:4.2rem">成交概况</h3>
+                            <h4 class="left" id="TransactionOverview_date"></h4>
+                            <!--<a href="###" class="right">更多</a>-->
+                            <div class='clear'></div>
+                        </div>
+                        <div class="lr" id="TransactionOverview">
+                        </div>
+                    </div>
+                    <div class="part linechart">
+                        <div class="parttitle">
+                            <h3 class="left">融资融券余额走势(亿元)</h3>
+                            <!--<a href="###" class="right">更多</a>-->
+                            <div class='clear'></div>
+                        </div>
+                        <div class="canvasbox">
+                            <canvas id="canvas" height="450" width="640"></canvas>
+                        </div>
+                        <div style="border-top: 1px solid rgba(0,0,0,.05); position: relative;top: -1.7rem;width: 12.8rem;left: 2.7rem;"></div>
+                        <div class="linedate" id="FinancingTrendLine">
+                        </div>
+                        <div class="left">
+                            <div>
+                                <div>
+                                    <div></div>
+                                </div>
+                                <p id="rzrqtj"><span>%</span></p>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <h3 id="totalmarket"></h3>
+                            <p>总流通市值(亿元)</p>
+                            <h4 id="Financingthebalance"></h4>
+                            <p>融资融券余额(亿元)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- topic03 panel end -->
+            <div class="panel back topic_detail" id="topic01_detail" data-title='沪港通公告'>
+                <div class="content tabbox" id="hgt_list">
+                    <ul class="list tab1">
+                    </ul>
+                </div>
+            </div>
+            <!-- topic01 detail panel end -->
+            <div class="panel back topic_detail" id="topic02_detail" data-title='股票期权最新消息'>
+                <div class="content tabbox" id="stockinfo_list">
+                    <ul class="list tab1">
+                    </ul>
+                </div>
+            </div>
+            <!-- topic02 detail panel end -->
+            <div class="panel back topic_detail" id="topic03_detail" data-title='融资融券通知公告'>
+                <div class="content tabbox" id="rzrq_list">
+                    <ul class="list tab1">
+                    </ul>
+                </div>
+            </div>
+            <!-- topic04 panel end -->
+            <div class="panel main" id="mine" data-title='我的'>
+                <div>
+                    <ul>
+                        <!-- <li>未登录<a href="#login">登陆/注册</a></li> -->
+                        <div class="guidemask masktop"></div>
+                        <div class="guidemask maskbottom"></div>
+                        <div class="guidemask maskleft"></div>
+                        <div class="guidemask maskright"></div>
+                        <div class="guidemask maskblock"></div>
+                        <li>
+                            <!-- <img src="assets/img/usercenter_icon.png" alt=""> -->
+                            <img id="loginedavatar" style="display: none" src="assets/img/usercenter_icon02.png" alt="">
+                            <img id="loginavatar" src="assets/img/usercenter_icon02.png" alt="">
+                            <a id="js_nologin" href="#login" class="user_login">登录/注册</a>
+                            <p id="mine_nickname" style="display: none" class="user_name">张大千</p>
+                            <p id="mine_phone" style="display: none" class="user_tel">136*****618</p>
+                        </li>
+                    </ul>
+                
+                    <div class="guidemask masktop loginGuide"></div>
+                    <div class="guidemask maskbottom loginGuide"></div>
+                    <div class="guidemask maskleft loginGuide"></div>
+                    <div class="guidemask maskright loginGuide"></div>
+                    <div class="guidemask maskblock loginGuide">
+                        <a href="###"></a>
+                        <a href="###"></a>
+                    </div>
+
+                    <ul>
+                        <li><a href="##" id="myfav" class="m_favo">我的收藏</a></li>
+                        <li><a href="##" id="myselfsel" class="m_sele">我的自选</a></li>
+                        <!--<li><a href="###" class="m_info">我的消息</a>-->
+                        <!--<p>2</p>-->
+                        <!--</li>-->
+                        <li id="phzqbtn"><a href="#phzqpanel" id="phzq" class="m_phzq">配号中签查询</a></li>
+                        <li id="gdcardbtn"><a href="#stockholderInfo" id="gdcard" class="m_gdcard">绑定股东账号</a></li>
+                        <li id="changpwbtn"><a href="#changepw" id="uppwd" class="m_pass">修改密码</a></li>
+                        <li><a href="#feedback" class="m_repl">我的反馈</a></li>
+                        <li id="scancodebtn"><a href="###" id="qrcode" class="m_qrcode">扫一扫登录</a></li>
+                        <li><a href="#about" class="about">关于</a></li>
+                        <li id="logoutbtns"><a href="#ring" id="logout" class="m_logout">退出</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- mine panel end -->
+            <div class="panel mine" id="feedback" data-title='我的反馈'>
+                <div class="wordCount" id="wordCount">
+                    <span class="wordwrap">还可输入<span class="word">300</span>字</span>
+                    <textarea id="feedbackmsg" placeholder="请输入您的反馈意见(最多300字）"></textarea>
+                </div>
+            </div>
+            <!--  feedback panel end-->
+            <div class="panel" id="eactask" data-title='提问'>
+                <div class="wordCount" id="eactaskCount">
+                    <span class="wordwrap">还可输入<span class="word">140</span>字</span>
+                    <input type="text" id="eactquestitle" code="" placeholder="上市公司名称/代码">
+                    <textarea id="eactquestion" placeholder="请输入您的问题(最多140字）"></textarea>
+                     <ul id="eactasktip" style="display:none;">
+    </ul>
+    
+                </div>
+            </div>
+            <!--  eactask panel end-->
+            <div class="panel" id="etalktask" etalkid="" data-title='提问'>
+                <div class="wordCount" id="etalkaskCount">
+                    <span class="wordwrap">还可输入<span class="word">200</span>字</span>
+                    <input type="text" id="etalkquestitle" readonly="true"  placeholder="请选择嘉宾" value="">
+                    <textarea id="etalkquestion" placeholder="请输入您的反馈意见(最多200字）"></textarea>
+                    <ul id="etalkasktip" style="display:none;">
+
+    </ul>
+    
+
+                </div>
+            </div>
+            <div class="panel" id="roadshowtask" data-title='提问'>
+                <div class="wordCount" id="roadshowtaskCount">
+                    <span class="wordwrap">还可输入<span class="word">200</span>字</span>
+                    <input type="text" id="roadshowquestitle" readonly="true" placeholder="请选择嘉宾">
+                    <textarea id="roadshowquestion" placeholder="请输入您的反馈意见(最多200字）"></textarea>
+                    <ul id="roadshowasktip" style="display:none;">
+
+    </ul>
+
+                </div>
+            </div>
+            <!--  eactask panel end-->
+            <div class="panel back mine" id="about" data-title='关于'>
+                <div>
+                    <h1>介绍</h1>
+                    <p id="aboutcontent">
+                        &nbsp;&nbsp;&nbsp;&nbsp;上交所App是上海证券交易所开发的官方移动App应用。秉承“权威、及时、准确”的宗旨，服务证券市场、服务投资者。让市场各类参与者快速了解上交所相关业务动态，随时随地获取上海证券交易所各类公告通知、监管信息、统计数据，并能与上市公司等进行互动交流。
+                    </p>
+                    <p style="text-align: right">由上证所信息网络有限公司开发维护</p>
+                    <p id="appversion" style="text-align: right"></p>
+                </div>
+                <div>
+                    <h1>分享</h1>
+                    <ul>
+                        <li>
+                            <a href="###"><img src="assets/img/about_icon_wc.png" platform="wx" class="js_share" alt="">
+                                <p>微信朋友</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="###"><img src="assets/img/about_icon_moments.png" platform="fc" class="js_share" alt="">
+                            <p>微信朋友圈</p>
+                        </a>
+                        </li>
+                        <li>
+                            <a href="###"><img src="assets/img/about_icon_wb.png" platform="wb" class="js_share" alt="">
+                                <p>新浪微博</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="###"><img src="assets/img/sns_icon_qq.png" platform="QQ" class="js_share" alt="">
+                                <p>QQ</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="###"><img src="assets/img/about_icon_qqwb.png" platform="qzone" class="js_share" alt="">
+                                <p>QQ空间</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+                <div>
+                    <h1>推荐App</h1>
+                    <ul>
+                        <li>
+                            <a id="gpqqapp" href="###"><img src="assets/img/app_icon.png" height="88" width="88" alt="">
+                                <p>股票期权</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="eactapp" href="###"><img src="assets/img/about_icon_e2.png" height="88" width="88" alt="">
+                                <p>上证e互动</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="panel back mine" id="login" data-title='登录上证服务通行证'>
+                <ul>
+                    <li class="u_id">
+                        <label for=""></label>
+                        <input id="acount" type="text" placeholder="请输入手机号、邮箱或股东账号">
+                    </li>
+                    <li class="u_password">
+                        <label for=""></label>
+                        <input id="pwd" type="password" placeholder="请输入密码" class="password"><span class="pw_toggle"></span>
+                    </li>
+                    <li class="v_code">
+                        <label for=""></label>
+                        <input id="loginvode" type="tel" placeholder="请输入验证码" class="idcode">
+                        <a href="###" class="idcode" id="idcode">1234</a>
+                    </li>
+                </ul>
+                <div>
+                    <a href="#register" class="left">注册新用户</a>
+                    <a href="#getback" class="right">找回密码</a>
+                </div>
+                <!--mine-->
+                <!--<a href="#" id="loginbtn" class="button login">登录</a> -->
+                <img src="assets/img/usercenter_bg2.png" class="uc_bg"alt="">
+
+            </div>
+            <!-- login panel end -->
+            <div class="panel back mine" id="loginError" data-title='登录上证服务通行证'>
+                <h1>服务器失联!</h1>
+                <h2>请稍等或刷新试试看</h2>
+                <img src="assets/img/usercenter_bg3.png" class="uc_bg2"alt="">
+            </div>
+            <!-- loginError -->
+            <div class="panel register mine" id="register" data-title='注册'>
+                <ul>
+                    <li>
+                        <input type="tel" id="regmobile" placeholder="请输入手机号">
+                    </li>
+                    <li>
+                        <input type="text" id="regnickname" placeholder="请输入昵称（3-20字、中英文、数字、“_”符）" class="password">
+                    </li>
+                    <li>
+                        <input type="password" id="regpwd" placeholder="请输入密码（至少6位字母数字组合）" class="password"><span class="pw_toggle"></span></li>
+                    <li>
+                        <input type="tel" id="regvode" placeholder="请输入验证码" class="idcode"><a href="###" id="sendactivecode" class="idcode">获取验证码</a></li>
+                </ul>
+                <div>
+                    <p class="checkbox"><span id="agree" class="checkbox"></span>我已阅读并同意</p><a href="###" id="agreementlink">《<span>上交所平台服务协议</span>》</a>
+                </div>
+                <!-- <a href="###" class="button login">登陆</a> -->
+                <img src="assets/img/usercenter_bg2.png" class="uc_bg"alt="">
+
+            </div>
+            <!-- register panel end -->
+            <div class="panel mine" id="agreement" data-title='上证信息通行证用户服务协议'>
+                <div class="agreement_c">
+                    <div>
+                        <h3>1. 特别提示</h3>
+                        <p>1.1 上证服务通行证各项电子服务的所有权、运作权以及全部知识产权归上证所信息网络有限公司（以下统称“运营方”），运营方同意按照本协议的规定及其不时发布的操作规则提供基于互联网以及移动网的相关服务（以下称“网络服务”），为获得网络服务，服务使用人（以下称“用户”）应当同意本协议的全部条款并按照页面上的提示完成全部的注册程序。用户在进行注册程序过程中点击“同意”按钮即表示用户完全接受本协议项下的全部条款。此后，用户不得以未阅读本服务协议内容作任何形式的抗辩。</p>
+                        <p>1.2 本服务条款所称的“上证服务通行证”是指用户注册的合法、有效的帐号，包括</p>
+                        <p>（1）以有效的手机号码注册的账号；</p>
+                        <p>（2）以有效的email邮箱注册的账号；</p>
+                        <p>（3）以沪市股东账号注册的帐号；</p>
+                        <p>1.3 用户注册成功后，上证服务通行证将给予每个用户一个用户帐号及相应的密码，该用户帐号和密码由用户负责保管；用户应当对以其用户帐号进行的所有活动和事件负法律责任。</p>
+                        <h3>2. 服务说明</h3>
+                        <p>2.1 上证服务通行证提供服务的具体内容由运营方根据实际情况提供。运营方并不承诺服务在开始、变更或者结束时，均事先通知用户。</p>
+                        <p>2.2 上证服务通行证仅提供相关的互联网服务，用户必须自行负责上网设备，如个人电脑、手机或其他上网设备，以及自行解决互联网接入和支付与此服务有关的费用。</p>
+                        <h3>3. 使用规则</h3>
+                        <p>3.1 用户在使用上证服务通行证时，必须遵守中华人民共和国相关法律法规的规定，用户应同意将不会利用本服务进行任何违法或不正当的活动，包括但不限于下列行为∶</p>
+                        <p>（1）上载、展示、张贴、传播或以其它方式传送含有下列内容之一的信息：</p>
+                        <p>&nbsp;&nbsp;① 反对宪法所确定的基本原则的；</p>
+                        <p>&nbsp;&nbsp;② 危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；</p>
+                        <p>&nbsp;&nbsp;③ 损害国家荣誉和利益的；</p>
+                        <p>&nbsp;&nbsp;④ 煽动民族仇恨、民族歧视、破坏民族团结的；</p>
+                        <p>&nbsp;&nbsp;⑤ 破坏国家宗教政策，宣扬邪教和封建迷信的；</p>
+                        <p>&nbsp;&nbsp;⑥ 散布谣言，扰乱社会秩序，破坏社会稳定的；</p>
+                        <p>&nbsp;&nbsp;⑦ 散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；</p>
+                        <p>&nbsp;&nbsp;⑧ 侮辱或者诽谤他人，侵害他人合法权利的；</p>
+                        <p>&nbsp;&nbsp;⑨ 含有虚假、有害、胁迫、侵害他人隐私、骚扰、侵害、中伤、粗俗、猥亵、或其它道德上令人反感的内容；</p>
+                        <p>&nbsp;&nbsp;⑩ 含有中国法律、法规、规章、条例以及任何具有法律效力之规范所限制或禁止的其它内容的。</p>
+                        <p>（2）利用上证服务通行证从事以下活动：</p>
+                        <p>&nbsp;&nbsp;① 未经允许，进入计算机信息网络或者使用计算机信息网络资源的；</p>
+                        <p>&nbsp;&nbsp;② 未经允许，对计算机信息网络功能进行删除、修改或者增加的；</p>
+                        <p>&nbsp;&nbsp;③ 未经允许，对进入计算机信息网络中存储、处理或者传输的数据和应用程序进行删除、修改或者增加的；</p>
+                        <p>&nbsp;&nbsp;④ 故意制作、传播计算机病毒等破坏性程序的；</p>
+                        <p>&nbsp;&nbsp;⑤ 其他危害计算机信息网络安全的行为。</p>
+                        <p>（3）其他基于非法或不正当目的而使用网络服务系统的行为；</p>
+                        <p>3.2 如用户在使用网络服务时违反任何上述规定，运营方或其授权的人有权要求用户改正或直接采取一切必要的措施（包括但不限于更改或删除用户张贴的内容、暂停或终止用户使用网络服务的权利等）以减轻和消除用户不当行为造成的影响。</p>
+                        <p>3.3 用户不得对本服务任何部分或在使用本服务中获得的信息，进行复制、拷贝、出售、转售或用于任何其它商业目的。</p>
+                        <p>3.4 用户须对自己在使用上证服务通行证过程中的行为承担法律责任。用户承担法律责任的形式包括但不限于：对受到侵害者进行赔偿，以及如果在运营方首先承担了因用户行为导致的行政处罚或侵权损害赔偿责任后，用户应给予运营方赔偿，赔偿范围包括运营方向第三方支付的赔偿、罚款以及运营方因此而受到的全部损失。</p>
+                        <p>3.5 上市公司不得通过本平台发布非公开重大信息。上市公司通过本平台发布的内容不构成任何法定信息披露，上市公司信息披露应以其在指定媒体披露的内容为准。</p>
+                        <h3>4. 服务变更、中断或终止</h3>
+                        <p>4.1 鉴于网络服务的特殊性，用户同意运营方有权不经事先通知，随时变更、中断或终止部分或全部的网络服务（包括收费网络服务）。运营方不保证网络服务不会中断，也不保证网络服务的及时性、安全性、准确性，无论因任何原因发生网络服务中断、不及时、不安全、不准确的情况，运营方均不承担任何责任。</p>
+                        <p>4.2 运营方需要定期或不定期地对提供网络服务的平台或相关的设备进行检修或者维护，如因此类情况而造成网络服务（包括收费网络服务）在合理时间内的中断，运营方无需为此承担任何责任。运营方保留不经事先通知为维修保养、升级或其它目的暂停本服务任何部分的权利。</p>
+                        <p>4.3 如发生下列任何一种情形，运营方有权随时中断或终止向用户提供本协议项下的网络服务（包括收费网络服务）而无需对用户或任何第三方承担任何责任：</p>
+                        <p>&nbsp;&nbsp;（1）用户提供的个人资料不真实；</p>
+                        <p>&nbsp;&nbsp;（2）用户违反本协议中规定的使用规则。</p>
+                        <p>4.4 用户同意运营方得基于其自行之考虑，因任何理由，包含但不限于长时间未使用，或运营方认为用户已经违反本服务协议的文字及精神，终止用户的密码、帐号或本服务（或服务之任何部分）之使用，并将用户在本服务内任何内容加以移除并删除。用户承认并同意，运营方可随时关闭或删除用户的帐号及用户帐号中所有相关信息及文件，及/或禁止继续使用前述文件或本服务。 此外，用户同意若本服务之使用被中断或终止用户的帐号及相关信息和文件被关闭或删除，运营方对该用户或任何第三人均不承担任何责任。</p>
+                        <p>4.5 如用户注册的免费网络服务的帐号在任何连续180日内未实际使用，或者用户注册的收费网络服务的帐号在其订购的收费网络服务的服务期满之后连续180日内未实际使用，则运营方有权删除该帐号并停止为该用户提供相关的网络服务。</p>
+                        <h3>5. 免责声明</h3>
+                        <p>5.1 运营方力求本平台的正常运行，但不对其适用性作出任何保证。对任何因直接或间接使用“上证服务通行证”及其展示的信息而造成损失或引致法律纠纷的，运营方不承担任何责任。</p>
+                        <p>5.2 “上证服务通行证”中的任何信息、评述及其他内容均不构成投资建议或投资结果，投资者应当根据自身判断审慎做出投资决定，并自行承担风险。</p>
+                        <p>5.3 运营方不担保网络服务一定能满足用户的要求，也不担保网络服务不会中断，对网络服务的及时性、安全性、准确性也都不作担保。</p>
+                        <p>5.4 对于因不可抗力或运营方不能控制的原因造成的网络服务中断或其它缺陷，运营方不承担任何责任。</p>
+                        <p>5.5 本服务或第三人可提供与其它国际互联网上之网站或资源之链接。由于运营方无法控制这些网站及资源，用户了解并同意，此类网站或资源是否可供利用，运营方不予负责，存在或源于此类网站或资源之任何内容、广告、产品或其它资料，运营方亦不予保证或负责。因使用或依赖任何此类网站或资源发布的或经由此类网站或资源获得的任何内容、商品或服务所产生的任何损害或损失，运营方不承担任何责任。</p>
+                        <p>5.6 用户明确并同意其使用上证服务通行证所存在的风险将完全由其自己承担。用户理解并接受下载或通过上证服务通行证取得的任何信息资料取决于用户自己，并由其承担系统受损、资料丢失以及其它任何风险。</p>
+                        <p>5.7 运营方有权于任何时间暂时或永久修改或终止本服务（或其任何部分），而无论其通知与否，运营方对用户和任何第三人均无需承担任何责任。</p>
+                        <h3>6. 网络服务内容的所有权</h3>
+                        <p>6.1 本协议定义的网络服务内容包括：运营方提供的文字、软件、声音、 图片、录像、图表、广告中的全部内容、电子邮件的全部内容以及运营方为用户提供的其他信息。所有这些内容受版权、商标和/或其它财产所有权法律的保护。用户只能在运营方和相关权利人授权下才能使用这些内容，而不能擅自复制、发布、转载、播放、改编、汇编或以其他方式使用这些内容或将该等内容用于其他任何商业目的。</p>
+                        <p>6.2 对于用户通过上证服务通行证上传的可公开获取区域的任何内容，用户同意授予运营方在全世界范围内永久性的、不可撤销的、免费的、非独家的和再许可的权利和许可，运营方可以使用、复制、修改、改编、出版、翻译、据以创作衍生作品、传播、表演和展示该等内容的全部或部分，和/或将此等内容的全部或部分编入其他任何形式的作品、媒体或技术中。</p>
+                        <h3>7. 注册信息和隐私保护</h3>
+                        <p>7.1 用户应提供及时、详尽及准确的个人资料，并不断更新注册资料，符合及时、详尽准确的要求。所有原始键入的资料将引用为注册资料。如果因注册信息不真实而引起的问题，并对问题发生所带来的后果，运营方不负任何责任。</p>
+                        <p>7.2 用户不应将其帐号、密码转让或出借予他人使用。如用户发现其帐号遭他人非法使用，应立即通知运营方。因黑客行为或用户的保管疏忽导致帐号、密码遭他人非法使用，运营方不承担任何责任。</p>
+                        <p>7.3 运营方不对外公开或向第三方提供单个用户的注册资料，但出现以下情况的除外：</p>
+                        <p>&nbsp;&nbsp;（1）事先获得用户的明确授权；</p>
+                        <p>&nbsp;&nbsp;（2）只有透露用户的个人资料，才能提供用户所要求的产品和服务；</p>
+                        <p>&nbsp;&nbsp;（3）根据有关的法律法规要求；</p>
+                        <p>&nbsp;&nbsp;（4）按照相关政府主管部门的要求；</p>
+                        <p>&nbsp;&nbsp;（5）为维护运营方的合法权益。</p>
+                        <p>7.4 用户在使用上证服务通行证时，即表示用户同意运营方收集并使用用户的资料（如本协议所述），并表示用户认同上证服务通行证用户协议及免责声明。运营方保留修改此隐私权政策的权利。</p>
+                        <h3>8. 其他</h3>
+                        <p>8.1 本协议的订立、执行和解释及争议的解决均应适用中华人民共和国内地(不包括香港、澳门和台湾地区)法律。</p>
+                        <p>8.2 如双方就本协议内容或其执行发生任何争议，双方应尽量友好协商解决；协商不成时，双方同意将争议提交上证所信息网络有限公司所在地的人民法院提起诉讼。</p>
+                        <p>8.3 运营方未行使或执行本服务协议任何权利或规定，不构成对前述权利或规定之放弃。</p>
+                        <p>8.4 如本协议中的任何条款无论因何种原因完全或部分无效或不具有执行力，本协议的其余条款仍应有效并且有约束力。</p>
+                        <p>8.5 本协议中的标题仅为阅读方便而设，不影响本协议的解释或意思。</p>
+                        <p>8.6 用户在点击确认按钮之前，应已经详细阅读了上述内容，并已准确理解其含义，愿意按照本协议之规定使用上证服务通行证提供的相关服务并依法承担相应责任。</p>
+                        <p>8.7 上证所信息网络有限公司保留对本协议的解释权。</p>
+                    </div>
+                </div>
+                <div class="alt">
+                    <a href="###">返回</a>
+                    <a href="###">阅读并同意</a>
+                </div>
+            </div>
+            <!-- agreement panel end -->
+            <div class="panel register mine" id="register2" data-title='注册'>
+                <div>
+                    <p>已发送验证码短信（免费）到号码</p>
+                    <p id="sendmobileno">139 **** **31</p>
+                </div>
+                <ul>
+                    <li>
+                        <input type="tel" id="" placeholder="请输入验证码" class="idcode"><a href="###" id="sendactivecode" class="idcode">获取验证码</a></li>
+                </ul>
+                <!-- <a href="###" class="button login">登陆</a> -->
+            </div>
+            <!-- register2 panel end -->
+            <div class="panel back mine" id="getback" data-title='找回密码'>
+                <ul>
+                    <li class="u_id">
+                        <label for=""></label>
+                        <input id="backmobileno" type="tel" placeholder="请输入手机号">
+                    </li>
+                    <li class="v_code">
+                        <label for=""></label>
+                        <input type="tel" id="backvcodes" placeholder="请输入验证码" class="idcode"><a id="backvcode" href="###" class="idcode">获取验证码</a></li>
+                    <li class="u_password">
+                        <label for=""></label>
+                        <input id="backnewpwd" type="password" placeholder="请输入新密码（至少6位字母数字）" class="password"><span class="pw_toggle"></span></li>
+                    <li class="u_pagain">
+                        <label for=""></label>
+                        <input id="backqrpwd" type="password" placeholder="确认新密码" class="password"><span class="pw_toggle"></span></li>
+                </ul>
+                <!-- <a href="###" id="getbackbtn" class="button sub">提交</a> -->
+            </div>
+            <!-- getback panel end -->
+            <div class="panel back mine" id="changepw" data-title='修改密码'>
+                <ul>
+                    <li class="oldpw">
+                        <label for=""></label>
+                        <input type="password" id="oldpwd" placeholder="请输入旧密码" class="password"><span class="pw_toggle"></span></li>
+                    <li class="newpw">
+                        <label for=""></label>
+                        <input type="password" id="newpwd" placeholder="请输入新密码（至少6位字母数字）" class="password"><span class="pw_toggle"></span></li>
+                    <li class="pwagain">
+                        <label for=""></label>
+                        <input type="password" id="newqrpwd" placeholder="确认新密码" class="password"><span class="pw_toggle"></span></li>
+                </ul>
+                <!-- <a href="###" id="changepwdbtn" class="button sub">提交</a> -->
+            </div>
+            <!-- changepw panel end -->
+            <!--配号中签信息-->
+            <div class="panel back mine" id="phzqpanel" data-title='配号中签信息'>
+
+                <div id="phzqlistdiv">
+                    <div style="padding-right: .5rem" class="">
+                        <a id="js_ph" class="tableftactive">配号查询</a> <a id="js_zq" class="tabright">中签查询</a>
+                    </div>
+
+                    <div style="clear: both;"></div>
+                    <div id="phzqnodata" class="nodata" style="display: none">
+                        <img class="js_phzqnodata" style="display: none" src="./assets/img/phnodata.png" />
+                        <div class="sixmonth js_phzqnodata" style="display: none">最近没有您的配号中签信息</div>
+
+                        <div class="nobind" style="display: none;">
+                        您还没有绑定股东账号，点击<br>这里去绑定：
+                        <div id="bindstockcard">绑定股东账号</div>
+                        </div>
+                    </div>
+
+                    <ul id="phzqlist">
+
+                    </ul>
+
+                </div>
+            </div>
+            <!--phzqpanel end-->
+
+            <!-- stockholderInfo -->
+            <div class="panel back mine" id="stockholderInfo" data-title='我的股东账号'>
+                <div class="shCardList">
+                    <p><span>股东账号</span><span>密码激活验证</span></p>
+                    <ul id="mystockcard">
+                        
+                    </ul>
+                     
+                      <div id="cardlistnone" class="shEmpty" style="display: none;">
+                        <img src="assets/img/sh_emptyIcon.png" height="189" width="190" alt="">
+                        <h1>请添加绑定股东账号</h1>
+                     </div>
+                    <div id="phzqneterror" class="nodata" style="display: none">
+                        <div class="nobind" >
+
+                            <div id="regetcardlist" style="background-color: #66c4ff;border-radius: 10px;color: #fff;font-weight: bold !important;text-align: center;font-size: 0.7rem">
+                                信息获取失败,点击重新获取
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="shQuestion">
+                    <p>常见问题</p>
+                    <ul>
+                        <li>
+                            <a href="###">为什么要绑定股东账号？</a>
+                            <div >
+                                答： 通行证支持的部分应用，必需要绑定股东账号才能使用，如：股东大会互联网投票、个股期权考试成绩查询等。
+                            </div>
+                        </li>
+                        <li>
+                            <a href="###">如何绑定股东账号？</a>
+                            <div>
+                                答：<br>
+                                1）您需要在绑定股东账号界面上，输入股东账号、开户证件号等基本信息。<br>
+                                2）对于A股股东账号，系统将进行开户证件验证。<br>
+                                3）您需要通过交易系统申报买入密码激活专用代码（A股799988，B股939988），价格1元，数量为系统生成的激活码数字。您申报成功后大约5分钟后，系统将自动完成绑定工作。
+                            </div>
+                        </li>
+                        <li>
+                            <a href="###">一个通行证可以绑定多个股东账号吗？</a>
+                            <div>
+                                答： 可以，但必须保证多个股东账号属于同一股东（股东姓名及开户证件号均相同）。
+                            </div>
+                        </li>
+                        <li>
+                            <a href="###">通行证下的身份证件号是怎么设定的？</a>
+                            <div>
+                                答： 通行证下的身份证件号是在您第一次绑定A股股东账号时设定的。一旦设定，不允许变更。
+                            </div>
+                        </li>
+
+                    </ul>
+                     
+                </div>
+            </div>
+            <!-- stockholderInfo end -->
+
+            <!-- addShCard -->
+            <div class="panel back mine" id="addShCard" data-title='绑定股东账号'>
+                <div class="shTab">
+                    <a href="###" class="active">填写账号信息</a>
+                    <a href="###">开户证件验证</a>
+                </div>
+                <div class="shCardInfo step" stepid="step1">
+                    <ul>
+                        <li class="switch"><div><p datatype="A">A股</p><a href="###"></a></div></li>
+                        <li><label for="">股东账号</label><input id="cardno" type="text" value="A"></li>
+                        <li class="select"><label for="">开户证件类型</label><input id="credentialstype" readonly="readonly" type="text">
+
+                        </li>
+                        <li><label for="">开户证件号</label><input id="credentialsno" type="text"></li>
+                        <li class="telNum"><label for="">手机号码</label><input id="mobile" type="tel"><a id="cardactivecode" href="###">获取验证码</a></li>
+                        <li><label for="">验证码</label><input id="mobilecode" type="tel"></li>
+                    </ul>
+                </div>
+                <!--<div class="shCardActivation step">-->
+                    <!--<p>股东账号基本信息验证通过！如需体验更多服务，例如配号中签查询，股东大会投票，必须完成股东账号密码激活认证。</p>-->
+                    <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<a href="###" class="onButton">密码激活认证</a>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<a href="###" class="offButton">不想验证</a>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--</div>-->
+                <div class="shCardActivation step" id="step2" stepid="step2" commitstatus="">
+                    <p id="bindresult"></p>
+                    <a  href="###" id="addShCardQuesBtn" class="actQuestion js_cg">什么是密码激活验证</a>
+                    <div id="addShCardQues" class="js_ans">
+                        答：<br>
+                        第一步：获取激活码；<br>
+                        第二步：使用激活码在交易系统下单；<br>
+                        第三步：大约经过5分钟系统自动验证完成。
+                    </div>
+
+                    <div class="js_cg">
+                        <a href="###" id="getactivecode" class="onButton">密码激活验证</a>
+                        <a href="###" id="noverifybtn" class="offButton">不想验证</a>
+                    </div>
+
+                </div> 
+
+                <div class="shCardActivated step" stepid="step3">
+                    <input type="hidden" id="cardnum" value="">
+                    <div>
+                        <h1>第一步:获取激活码</h1>
+                        <p id="activedcard"  >股东账号：</p>
+                        <p>激活码：<span class="js_activednum"></span><a  id="reactivenum" href="###" class="onButton" style="width: 4.35rem;height: 1.5rem;line-height: 1.5rem;margin-left: 2rem">重新获取</a></p>
+                        <p id="activecodevalid">该激活码有效期至: <span id="vailddate"></span></p>
+                        <p id="activecodeinvalid" style="color:#f75242">该激活码已失效,请重新获取激活码</p>
+                    </div>
+
+                    <div>
+                        <h1>第二步:交易系统申报</h1>
+                        <p>操作方法：您需要通过交易系统申报买入密码激活专用代码（<span id="zycode"></span>），价格1元，数量为系统生成的激活码<span class="js_activednum"></span>。</p>
+                        <p><i>注：</i>您申报成功后大约5分钟后，系统将自动完成绑定工作。</p>
+                        <p><i>注：</i>申报代码“A股799988，B股939988”为密码激活专用代码，申报买入不会产生任何费用。</p>
+                    </div>
+
+                    <div>
+                        <h1>第三步:点击查询激活状态</h1>
+                        <div>
+                            <a href="###" id="checkactivestatus" class="onButton">查询激活状态</a>
+                            <a href="###" id="backstockinfo" class="offButton">返回首页</a>
+                        </div>
+                    </div>
+
+
+                </div> 
+
+
+            </div>
+            <!-- addShCard end -->
+
+
+
+        </div>
+        <!-- page end -->
+        <footer id="mainfooter">
+            <div class="guidemask"></div>
+            <a href="#main" class="icon main active">首页</a>
+            <a href="###" id="searchbtn" class="icon search">搜索</a>
+            <a  id="hdbtn" data-ignore-pressed="false" class="icon actforum">互动</a>
+            <a href="#topic" class="icon topic">专题</a>
+            <a href="#mine" class="icon mine">我的</a>
+        </footer>
+        <div id='footerflag'></div>
+    </div>
+    <!-- view end -->
+
+
+    <!-- 弹层 -->
+    <div class="mask" id="msgalert">
+        <div class="password_alert">
+            <p>您已经设置新密码
+                <br>请重新登陆</p>
+            <a href="###" class="button confirm">确认</a>
+        </div>
+        <div class="password_alert1">
+            <p>您的登录状态已失效
+                <br>请重新登陆</p>
+            <a href="###" id="sessionfail" class="button confirm">确认</a>
+        </div>
+        <div class="u_logout">
+            <a href="###" id="logoutbtn">退出登录</a>
+            <a href="###" class="cancle">取消</a>
+        </div>
+        <div class="qr_code">
+            <img src="assets/img/about_icon_qrcode.png" alt="">
+            <a href="###" class="qr_close"></a>
+        </div>
+        <div class="delete_all">
+            <p>你确认要清空全部
+                <br>收藏记录吗？</p>
+            <a href="###">取消</a>
+            <a href="###">确认</a>
+        </div>
+        <div id="cardtypelist" class="sh_select">
+            <ul>
+                <li datatype="1">身份证</li>
+                <li datatype="9">其他</li>
+            </ul>    
+        </div>
+    </div>
+    <div class="sub_fb">
+        <img src="assets/img/sub_fb_icon.png" alt="">
+        <p>提交成功</p>
+        <p>感谢您的反馈意见</p>
+    </div>
+    <div class="add_fav">
+        <img src="assets/img/add_fav_icon.png" alt="" class="af">
+        <img src="assets/img/cancle_fav_icon.png" alt="" class="cf">
+        <p>收藏成功</p>
+    </div>
+    <div id="custom_alert" class="custom_alert">
+        <p>登录成功</p>
+    </div>
+    <div id="networkerror" class="neterror_alert">
+        <p>网络不稳定，请稍后再试</p>
+    </div>
+    <div class="qusetion_alert">
+        <img src="assets/img/icon_qs.png" alt="">
+        <p>提问成功<br>感谢您的参与</p>
+    </div>
+    <div id="loginloading" class="loginloading">
+        <div>
+            <img  src="assets/img/circle.png" />
+        </div>
+    </div>
+
+    
+
+    <script type="text/javascript" src="dist/js/dropload.min.js"></script>
+    <script type="text/javascript" src="dist/js/data.js"></script>
+    <script type="text/javascript" src="dist/js/jquery.json-2.4.min.js"></script>
+    <script type="text/javascript" src="dist/js/Chart.js"></script>
+    <script type="text/javascript" src="dist/js/swiper.min.js"></script>
+    <script type="text/javascript" src="dist/js/imgcache.js"></script>
+    <script type="text/javascript" src="plugins.js"></script>
+    <!-- build:js assets/js/sse.min.js -->
+    <script type="text/javascript" src="assets/js/calendar.js"></script>
+    <script type="text/javascript" src="assets/js/tool.js"></script>
+    <script type="text/javascript" src="assets/js/act.js"></script>
+    <script type="text/javascript" src="assets/js/ballot.js"></script>
+    <script type="text/javascript" src="assets/js/stockholdercard.js"></script>
+    <script type="text/javascript" src="assets/js/test.js"></script>
+    <script type="text/javascript" src="assets/js/hotpoint.js"></script>
+    <script type="text/javascript" src="assets/js/ajax.js"></script>
+    <script type="text/javascript" src="assets/js/control.js"></script>
+    <script type="text/javascript" charset="utf-8" src="assets/js/index.js"></script>
+    <!-- /build -->
+</body>
+
+</html>
