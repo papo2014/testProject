@@ -8,6 +8,9 @@
 /captures
 # Built application files 
 
+index.html
+lead.html
+main.html
 
 *.ap_ 
 
