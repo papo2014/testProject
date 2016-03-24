@@ -1,0 +1,3 @@
+[submodule "subModule"]
+	path = subModule
+	url = https://github.com/papo2014/lib_a.git
