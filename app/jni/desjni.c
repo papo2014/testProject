@@ -7,13 +7,20 @@
 
 #include "desjni.h"
 #include <string.h>
+#include<android/log.h>
 //#include <windows.h>
-char key[24]={ 'a', '3', 'a', 'c', 'd', '7','9','a', 'b', '3', 'd', 'c', 'd', 'v','9'};
+#define TAG "myDemo-jni" // 这个是自定义的LOG的标识
+#define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG,TAG ,__VA_ARGS__) // 定义LOGD类型
+#define LOGI(...) __android_log_print(ANDROID_LOG_INFO,TAG ,__VA_ARGS__) // 定义LOGI类型
+#define LOGW(...) __android_log_print(ANDROID_LOG_WARN,TAG ,__VA_ARGS__) // 定义LOGW类型
+#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR,TAG ,__VA_ARGS__) // 定义LOGE类型
+#define LOGF(...) __android_log_print(ANDROID_LOG_FATAL,TAG ,__VA_ARGS__) // 定义LOGF类型
+char key[48+1]={ 'a', '3', 'a', 'c', 'd', '7','9','a', 'b', '3', 'd', 'c', 'd', 'v','9'};
 
 char*   Jstring2CStr(JNIEnv*   env,   jstring   jstr) {
     char *rtn = NULL;
     jclass clsstring = (*env)->FindClass(env,"java/lang/String");
-    jstring strencode = (*env)->NewStringUTF(env,"GB2312");
+    jstring strencode = (*env)->NewStringUTF(env,"utf-8");
     jmethodID mid = (*env)->GetMethodID(env,clsstring, "getBytes", "(Ljava/lang/String;)[B");
     jbyteArray barr = (jbyteArray) (*env)->CallObjectMethod(env,jstr, mid, strencode);
     jsize alen = (*env)->GetArrayLength(env,barr);
@@ -29,16 +36,38 @@ char*   Jstring2CStr(JNIEnv*   env,   jstring   jstr) {
 
 jstring CStr2Jstring( JNIEnv* env, const char* pat )
 {
-    jsize   len   =   strlen(pat);
+    char *data = (char*)malloc(1024);
 
-    jclass   clsstring   =   (*env)->FindClass(env, "java/lang/String");
-    jstring   strencode   =   (*env)->NewStringUTF(env,"GB2312");
+    strcpy(data, pat);
 
-    jmethodID   mid   =   (*env)->GetMethodID(env,clsstring,   "<init>",   "([BLjava/lang/String;)V");
-    jbyteArray   barr   =   (*env)-> NewByteArray(env,len);
+    jsize len = strlen(data);
 
-    (*env)-> SetByteArrayRegion(env,barr,0,len,(jbyte*)pat);
-    return (jstring)(*env)-> NewObject(env,clsstring,mid,barr,strencode);
+    jclass cls = (*env)->FindClass(env,"java/lang/String");
+    jstring strcode = (*env)->NewStringUTF(env,"utf-8");
+
+    jmethodID  mid = (*env)->GetMethodID(env,cls, "<init>", "([BLjava/lang/String;)V");
+    jbyteArray bArray = (*env)->NewByteArray(env,len);
+
+    (*env)->SetByteArrayRegion(env,bArray, 0, len, (jbyte*)data);
+
+//    env->ReleaseStringUTFChars(env,ip, ips);
+//    env->ReleaseStringUTFChars(env,api, apis);
+//    env->ReleaseStringUTFChars(env,httptype, type);
+//    env->ReleaseStringUTFChars(headerString, strheader);
+
+    return (jstring)(*env)->NewObject(env,cls, mid, bArray, strcode);
+
+
+//jsize   len   =   strlen(pat);
+//
+//    jclass   clsstring   =   (*env)->FindClass(env, "java/lang/String");
+//    jstring   strencode   =   (*env)->NewStringUTF(env,"utf-8");
+//
+//    jmethodID   mid   =   (*env)->GetMethodID(env,clsstring,   "<init>",   "([BLjava/lang/String;)V");
+//    jbyteArray   barr   =   (*env)-> NewByteArray(env,len);
+//
+//    (*env)-> SetByteArrayRegion(env,barr,0,len,(jbyte*)pat);
+//    return (jstring)(*env)-> NewObject(env,clsstring,mid,barr,strencode);
 }
 /*
  * Class:     com_pj_test_util_DESTool
@@ -47,36 +76,29 @@ jstring CStr2Jstring( JNIEnv* env, const char* pat )
  */
 JNIEXPORT jstring JNICALL Java_com_pj_test_util_DESTool_decrypt
         (JNIEnv *env, jclass cls, jstring string) {
-    char result[64];//可以先分配一个足够大的存储空间，根据明文长度来取解密后的消息长度
-    char *rtn ;
-    rtn = Jstring2CStr(env,string);
+    char dest16[16+1];
+    char  src16[16+1];
+//    char result[64];//可以先分配一个足够大的存储空间，根据明文长度来取解密后的消息长度
+//    char *rtn = (char*)malloc(1024);
+//    memset(dest16,0,sizeof(dest16));
+//    memset(key,0,sizeof(key));
+//    memset(src16,0,sizeof(src16));
+    char *rtn = (char*)malloc(1024);
+    rtn =  Jstring2CStr(env,string);
+    strcpy(src16,rtn);;
+//    LOGI("James Native Function3: %s", rtn);
+//    LOGI("James Native Function3: %s", rtn);
+//    Decrypt(rtn, key, result, sizeof(rtn));
 
 
-//获得java.lang.String类的一个实例
-//    jclass clsstring = (*env)->FindClass(env, "java/lang/String");
-////指定编码方式
-//    jstring strencode = (*env)->NewStringUTF(env, "utf-8");//utf-16,GB2312
-////获得方法 getBytes
-//    jmethodID mid = (*env)->GetMethodID(env, clsstring, "getBytes", "(Ljava/lang/String;)[B");
-////通过回调java中的getBytes方法将字符串jstr转换成uft-8编码的字节数组
-//    jbyteArray barr = (jbyteArray)(*env)->CallObjectMethod(env, string, mid, strencode);
-//// String .getByte("GB2312");
-////获得字节数组的长度
-//    jsize alen = (*env)->GetArrayLength(env, barr);
-////获得字节数组的首地址
-//    jbyte *ba = (*env)->GetByteArrayElements(env, barr, JNI_FALSE);
-//    if (alen > 0) {
-////分配内存空间
-//        rtn = (char *) malloc(alen + 1); //new char[alen+1]; "\0"
-////将字符串ba复制到 rtn
-//        memcpy(rtn, ba, alen);
-//        rtn[alen] = 0;
-//    }
-//    (*env)->ReleaseByteArrayElements(env, barr, ba, 0); //释放内存
-    Decrypt(rtn, key, result, sizeof(rtn));
-
-//    char* p = Jstring2CStr(env,rtn);
-    return (*env)->NewStringUTF(env, result);
+    LOGI("James Native Function2: %s", src16);
+    Do_3DES(src16,key,dest16,'d');
+    LOGI("James Native Function2: %s", dest16);
+//     LOGI("James Native Function3: %s", result);
+    jstring jstr1 ;
+//    jstr1 = CStr2Jstring(env,result);
+    jstr1 = CStr2Jstring(env,dest16);
+    return jstr1;
 }
 
 /*
@@ -86,43 +108,32 @@ JNIEXPORT jstring JNICALL Java_com_pj_test_util_DESTool_decrypt
  */
 JNIEXPORT jstring JNICALL Java_com_pj_test_util_DESTool_encrypt
         (JNIEnv *env, jclass cls, jstring string) {
-    char cipher[64];//可以先分配一个足够大的存储空间存储中间密文结果
-    char *rtn ;
+    char dest16[16+1];
+//    char cipher[64];//可以先分配一个足够大的存储空间存储中间密文结果
+   char src16[16+1];
+//    memset(dest16,0,sizeof(dest16));
+////    memset(key,0,sizeof(key));
+//    memset(src16,0,sizeof(src16));
+     char *rtn = (char*)malloc(1024);
     rtn =  Jstring2CStr(env,string);
-//    rtn = jstringToWindows(env,string);
-//    const char* s = (*env)->GetStringUTFChars(env,string, NULL);
-////获得java.lang.String类的一个实例
-//    jclass clsstring = (*env)->FindClass(env, "java/lang/String");
-////指定编码方式
-//    jstring strencode = (*env)->NewStringUTF(env, "utf-8");//utf-16,GB2312
-////获得方法 getBytes
-//    jmethodID mid = (*env)->GetMethodID(env, clsstring, "getBytes", "(Ljava/lang/String;)[B");
-////通过回调java中的getBytes方法将字符串jstr转换成uft-8编码的字节数组
-//    jbyteArray barr = (jbyteArray)(*env)->CallObjectMethod(env, string, mid, strencode);
-//// String .getByte("GB2312");
-////获得字节数组的长度
-//    jsize alen = (*env)->GetArrayLength(env, barr);
-////获得字节数组的首地址
-//    jbyte *ba = (*env)->GetByteArrayElements(env, barr, JNI_FALSE);
-//    if (alen > 0) {
-////分配内存空间
-//        rtn = (char *) malloc(alen + 1); //new char[alen+1]; "\0"
-////将字符串ba复制到 rtn
-//        memcpy(rtn, ba, alen);
-//        rtn[alen] = 0;
-//    }
-//(*env)->ReleaseByteArrayElements(env, barr, ba, 0); //释放内存
-    Encrypt(rtn, key, cipher, sizeof(rtn));
-//    Encrypt(s, key, cipher, sizeof(s));
-//    jstring jstr = WindowsTojstring(env,cipher);
-    jstring jstr ;
-    jstr = CStr2Jstring(env,cipher);
+    strcpy(src16,rtn);
+//    memset(dest16,0,sizeof(dest16));
+//    memset(key,0,sizeof(key));
+//    memset(src16,0,sizeof(src16));
 
-//    (*env)->ReleaseStringUTFChars(env,string, s);
-//return  (*env)->NewStringUTF(env, p);
-//    return cipher;
+//    LOGI("James Native Function1: %s", rtn);
+////    Encrypt(rtn, key, cipher, sizeof(rtn));
+    LOGI("James Native Function2: %s", src16);
+    Do_3DES(src16,key,dest16,'e');
+    LOGI("James Native Function2: %s", dest16);
+//    Decrypt(cipher,key,rtn, sizeof(cipher));
+//    LOGI("James Native Function3: %s", rtn);
+    jstring jstr ;
+//    jstr = CStr2Jstring(env,cipher);
+//    LOGI("James Native Function4: %s", jstr);
+    jstr = CStr2Jstring(env,dest16);
     return jstr;
-//    return (*env)->CStr2Jstring(env,p);
+
 }
 
 

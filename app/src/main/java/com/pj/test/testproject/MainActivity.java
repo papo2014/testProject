@@ -41,10 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.btn_jni:
-                String string = "asadsdsd";
-                String s = DESTool.encrypt(string);
-
-                Log.e("testJni",s);
+                Intent intent1 = new Intent(MainActivity.this,JniActivity.class);
+                startActivity(intent1);
                 break;
             default:
                 break;
