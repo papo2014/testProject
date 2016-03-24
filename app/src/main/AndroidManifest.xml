@@ -20,6 +20,8 @@
 
         <activity
             android:name=".SaveDataActivity"/>
+        <activity
+            android:name=".JniActivity"/>
     </application>
 
 </manifest>

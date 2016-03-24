@@ -1,228 +1,380 @@
-#include "memory.h"
-#include "3des.h"
-#include "stdio.h"
+#include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
+#include <string.h>
+#include "3des.h"
 
-/*********************************************************/
-static void F_func(bool In[32], const bool Ki[48]);// f 函数
-static void S_func(bool Out[32], const bool In[48]);// S 盒代替
-static void Transform(bool *Out, bool *In, const char *Table, int len);// 变换
-static void Xor(bool *InA, const bool *InB, int len);// 异或
-static void RotateL(bool *In, int len, int loop);// 循环左移
-static void ByteToBit(bool *Out, const char *In, int bits);// 字节组转换成位组
-static void BitToByte(char *Out, const bool *In, int bits);// 位组转换成字节组
-static bool SubKey[16][48];// 16圈子密钥
-/*********************************************************/
+//做DES加密或解密运算
+int Do_DES(char* strSrc, char* strKey, char* strDest, char flag)
+{
+	int i,j;
+	 unsigned char subKey[16][48+1],byte8[8+1],bits[64+1],strTmp[64+1];
+	 unsigned char L0[32+1],R0[32+1],Lx[32+1],Rx[32+1];
 
-/************************加密*********************************/
-int Encrypt(char *Msg,  char *Key, char *Cipher,int length) //如果消息长度不是8的倍数，末位补0凑成8的倍数。
-{
-	if(length <=0)
-	{
-		return -1;
-	}
-	char keyarray1[8];
-	char keyarray2[8];
-	char keyarray3[8];
-	memcpy(&keyarray1, &Key[0], 8);
-	memcpy(&keyarray2, &Key[8], 8);
-	memcpy(&keyarray3, &Key[16], 8);
-	if (length%8==0)
-	{
-		int dst = length/8;
-		char out[8];
-		char in[8];
-		int j;
-		for ( j=0;j<dst;j++)
-		{
-			memcpy(&in[0], &Msg[8*j], 8);
-			encrypt(in, keyarray1, out);///////////////////
-			decrypt(out, keyarray2, in);//////////////////
-			encrypt(in, keyarray3, out);//////////////////
-			memcpy(&Cipher[8*j], &out, 8);
-		}
-		return 1;
-	}else
-	{
-		int ext = length/8;
-		int dst = length%8;
-		char * temp_in ;
-		char * temp_add;
-		temp_in = (char *) malloc((ext+1)*8);
-		temp_add = (char *)malloc(8-dst);
-		memcpy(&temp_in[0], &Msg[0], length);
-		memset(temp_add, 0, 8-dst);
-		memcpy(&temp_in[length],&temp_add[0], 8-dst);		
+	 if(!( flag == 'e' || flag == 'E' || flag == 'd' || flag == 'D'))
+	 return -1;
+	if(strSrc == NULL || strKey == NULL)
+	 return -2;
 
-		int round = ext+1;
-		char out [8];
-		char in[8];
-		int j;
-		for ( j=0;j<round;j++)
-		{
-			memcpy(&in[0], &temp_in[8*j], 8);
-			encrypt(in, keyarray1, out);
-			decrypt(out, keyarray2, in);
-			encrypt(in, keyarray3, out);
-			memcpy(&Cipher[8*j], &out, 8);
+	 if(flag == 'e' || flag == 'E')
+	{
+		 memset(byte8,0,sizeof(byte8));
+		BCDToByte(strKey, 16, byte8);
+		 memset(bits,0,sizeof(bits));
+		 ByteToBit(byte8, 8, bits);
+
+		 Des_GenSubKey(bits,subKey);
+
+		 BCDToByte(strSrc, 16, byte8);
+		 ByteToBit(byte8, 8, bits);
+		 Des_IP(bits, strTmp);
+		memcpy(L0,strTmp,32);
+		 memcpy(R0,strTmp+32,32);
+
+		 for(i=0;i<16;i++)
+		 {
+			 memcpy(Lx,R0,32);
+			 Des_F(R0,subKey[i],Rx);
+			 Do_XOR(L0,32,Rx);
+			 memcpy(L0,Lx,32);
+			 memcpy(R0,Rx,32);
+			}
+		 memcpy(bits,R0,32);
+		 memcpy(bits+32,L0,32);
+		 Des_IP_1(bits,strTmp);
+		 BitToByte(strTmp,64,byte8);
+		 ByteToBCD(byte8,8,strDest);
+		 }
+	 else
+	 {
+		 memset(byte8,0,sizeof(byte8));
+		 BCDToByte(strKey, 16, byte8);
+		 memset(bits,0,sizeof(bits));
+		 ByteToBit(byte8, 8, bits);
+
+		 Des_GenSubKey(bits,subKey);
+
+		 BCDToByte(strSrc, 16, byte8);
+		 ByteToBit(byte8, 8, bits);
+		Des_IP(bits, strTmp);
+		 memcpy(L0,strTmp,32);
+		 memcpy(R0,strTmp+32,32);
+
+		 for(i=0;i<16;i++)
+		 {
+			 memcpy(Lx,R0,32);
+			 Des_F(R0,subKey[15-i],Rx);
+			 Do_XOR(L0,32,Rx);
+			 memcpy(L0,Lx,32);
+			 memcpy(R0,Rx,32);
+			 }
+		 memcpy(bits,R0,32);
+		 memcpy(bits+32,L0,32);
+		 Des_IP_1(bits,strTmp);
+		 BitToByte(strTmp,64,byte8);
+		 ByteToBCD(byte8,8,strDest);
+		 }
+
+	 return 0;
+}
+
+//做3DES加密或解密运算
+int Do_3DES(char* strSrc, char* strKey, char* strDest, char flag)
+{
+	 unsigned char strBCDKey[32+1],strByteKey[16+1];
+	 unsigned char strMidDest1[16+1],strMidDest2[16+1];
+	 unsigned char strLKey[16+1],strMKey[16+1],strRKey[16+1];
+
+	 if(!( flag == 'e' || flag == 'E' || flag == 'd' || flag == 'D'))
+	 return -1;
+	 if(strSrc == NULL || strKey == NULL)
+	 return -2;
+
+	 if(strlen(strKey) < 32)
+	 return -3;
+	 if(flag == 'e' || flag == 'E')
+	 {
+		memset(strBCDKey,0,sizeof(strBCDKey));
+		memcpy(strBCDKey,strKey,32);
+
+		 memset(strLKey,0,sizeof(strLKey));
+		 memcpy(strLKey,strBCDKey,16);
+		 memset(strRKey,0,sizeof(strRKey));
+		 memcpy(strRKey,strBCDKey+16,16);
+
+		 Do_DES(strSrc,strLKey,strMidDest1,'e');
+		 Do_DES(strMidDest1,strRKey,strMidDest2,'d');
+	 Do_DES(strMidDest2,strLKey,strMidDest1,'e');
+
+		 memcpy(strDest,strMidDest1,16);
 		}
-		return 1;
-	}
+	 else
+	 {
+		 memset(strBCDKey,0,sizeof(strBCDKey));
+		memcpy(strBCDKey,strKey,32);
+
+		 memset(strLKey,0,sizeof(strLKey));
+		 memcpy(strLKey,strBCDKey,16);
+		 memset(strRKey,0,sizeof(strRKey));
+		 memcpy(strRKey,strBCDKey+16,16);
+
+		Do_DES(strSrc,strLKey,strMidDest1,'d');
+		 Do_DES(strMidDest1,strRKey,strMidDest2,'e');
+		 Do_DES(strMidDest2,strLKey,strMidDest1,'d');
+
+		 memcpy(strDest,strMidDest1,16);
+	 }
+
+	 return 0;
 }
-void encrypt(char In[8], const char Key[8], char Out[8])
+
+//对输入的字节串作BCD编码扩展
+int ByteToBCD(unsigned char* bytes, int count,unsigned char* strBCD)
 {
-	Des_SetKey(Key);
-    static bool M[64], Tmp[32], *Li = &M[0], *Ri = &M[32];
-    ByteToBit(M, In, 64);
-    Transform(M, M, IP_Table, 64);
-	int i;
-	for( i=0; i<16; i++)
-	{
-		memcpy(Tmp, Ri, 32);
-		F_func(Ri, SubKey[i]);
-		Xor(Ri, Li, 32);
-		memcpy(Li, Tmp, 32);
-	}
-	
-    Transform(M, M, IPR_Table, 64);
-    BitToByte(Out, M, 64);
+	 unsigned char cTmp;
+	 int i;
+
+	 for(i=0;i<count;i++)
+	 {
+		 cTmp = (bytes[i] & 0xF0) >> 4;
+		 strBCD[i*2] = (cTmp > 9) ? cTmp - 10 + 'A' : cTmp + '0';
+		 cTmp = bytes[i] & 0x0F;
+		 strBCD[i*2+1] = (cTmp > 9) ? cTmp - 10 + 'A' : cTmp + '0';
+		 }
+
+	 return (count*2);
 }
-/************************解密*********************************/
-int Decrypt(char *Msg,  char *Key, char *Cipher,int length)//�����Ϣ���Ȳ���8�ı�����ĩλ��0�ճ�8�ı�����
+
+//把输入的BCD编码串还原成字节串
+int BCDToByte(unsigned char* strBCD, int count, unsigned char* bytes)
 {
-	if(length <=0)
-	{
-		return -1;
-	}
-	char keyarray1[8];
-	char keyarray2[8];
-	char keyarray3[8];
-	memcpy(&keyarray1, &Key[0], 8);
-	memcpy(&keyarray2, &Key[8], 8);
-	memcpy(&keyarray3, &Key[16], 8);
-	if (length%8==0)
-	{
-		int dst = length/8;
-		char out [8];	
-		char in[8];
-		int j;
-		for ( j=0;j<dst;j++)
+	 unsigned char cTmp;
+	 int i;
+
+	 for(i=0;i<count/2;i++)
+	 {
+		 cTmp = strBCD[i*2];
+		 if(cTmp >= 'A' && cTmp <= 'F')
+		 cTmp = cTmp - 'A' + 10;
+		 else if(cTmp >= 'a' && cTmp <= 'f')
+		 cTmp = cTmp - 'a' + 10;
+		 else
+		cTmp &= 0x0F;
+		 bytes[i] = cTmp << 4;
+		 cTmp = strBCD[i*2+1];
+		 if(cTmp >= 'A' && cTmp <= 'F')
+		 cTmp = cTmp - 'A' + 10;
+		 else if(cTmp >= 'a' && cTmp <= 'f')
+		 cTmp = cTmp - 'a' + 10;
+		 else
+		 cTmp &= 0x0F;
+		 bytes[i] += cTmp;
+		 }
+
+	 return (count/2);
+}
+
+//把字节串变成比特串
+int ByteToBit(unsigned char* bytes, int count, unsigned char* strBit)
+{
+	 unsigned char cTmp;
+	 int i,j;
+
+	 for(i=0;i<count;i++)
+	 {
+		 cTmp = 0x80;
+		 for(j=0;j<8;j++)
 		{
-			memcpy(&in[0], &Msg[8*j], 8);
-			decrypt(in, keyarray3, out);
-			encrypt(out, keyarray2, in);
-			decrypt(in, keyarray1, out);
-			memcpy(&Cipher[8*j], &out, 8);
-		}
-		return 1;
-	}else
-	{
-		int ext = length/8;
-		int dst = length%8;
-		char * temp_in ;
-		char * temp_add;
-		temp_in = (char *) malloc((ext+1)*8);
-		temp_add = (char *)malloc(8-dst);
-		memcpy(&temp_in[0], &Msg[0], length);
-		memset(temp_add, 0, 8-dst);
-		memcpy(&temp_in[length],&temp_add[0], 8-dst);
-				
-		int round = ext+1;
-		char out [8];
-		char in[8];
-		int j;
-		for ( j=0;j<round;j++)
-		{
-			memcpy(&in[0], &temp_in[8*j], 8);
-			decrypt(in, keyarray3, out);
-			encrypt(out, keyarray2, in);
-			decrypt(in, keyarray1, out);
-			memcpy(&Cipher[8*j], &out, 8);
-		}
-		return 1;
-	}	
+			strBit[i*8+j] = (bytes[i] & cTmp) >> (7-j);
+			cTmp = cTmp >> 1;
+			 }
+		 }
+
+	return (count*8);
 }
-void decrypt(char In[8], const char Key[8], char Out[8])
+
+//把比特串变成字节串
+int BitToByte(unsigned char* strBit, int count, unsigned char* bytes)
 {
-	Des_SetKey(Key);
-    static bool M[64], Tmp[32], *Li = &M[0], *Ri = &M[32];
-    ByteToBit(M, In, 64);
-    Transform(M, M, IP_Table, 64);
+	 unsigned char cTmp;
+	int i,j;
+
+	 for(i=0;i<(count/8);i++)
+	 {
+		 cTmp = 0x00;
+		 for(j=0;j<8;j++)
+		 {
+			 cTmp += (strBit[i*8+j] << (7-j));
+			 }
+		 bytes[i] = cTmp;
+		 }
+
+	 return (count/8);
+}
+
+//做异或操作
+int Do_XOR(unsigned char* strSrc, int count, unsigned char* strDest)
+{
+	 int i;
+
+	 if(strSrc == NULL || strDest == NULL)
+	 return -1;
+
+	 for(i=0;i<count;i++)
+	 strDest[i] ^= strSrc[i];
+
+	 return 0;
+}
+
+//des算法PC-1变换，把64比特的密钥K变换成56比特
+int Des_PC_1(unsigned char* strIn, unsigned char* strOut)
+{
+	 int i;
+
+	 for(i=0;i<56;i++)
+	 strOut[i] = strIn[pc_1_table[i]-1];
+	return 56;
+}
+
+//des算法PC-2变换，把56比特变换成48比特
+int Des_PC_2(unsigned char* strIn, unsigned char* strOut)
+{
 	int i;
-	for( i=15; i>=0; i--)
+
+	 for(i=0;i<48;i++)
+	strOut[i] = strIn[pc_2_table[i]-1];
+
+	 return 48;
+}
+
+//des算法的循环左移位运算
+int Des_LS(unsigned char* strIn, int count, unsigned char* strOut)
+{
+	 int i;
+
+	 for(i=0;i<28;i++)
+	 strOut[i] = strIn[(i+count)];
+
+	 return 28;
+}
+
+//des算法中通过父密钥产生16个48比特位的子密钥
+int Des_GenSubKey(unsigned char* strKey, unsigned char strSubKey[16][48+1])
+{
+	 unsigned char tmp[56+1],C0[28+1],D0[28+1],Cx[28+1],Dx[28+1];
+	 int i,j;
+
+	 memset(tmp,0,sizeof(tmp));
+	 memset(C0,0,sizeof(C0));
+	memset(D0,0,sizeof(D0));
+	 memset(Cx,0,sizeof(Cx));
+	 memset(Dx,0,sizeof(Dx));
+
+	Des_PC_1(strKey, tmp);
+
+	 memcpy(C0,tmp,28);
+	 memcpy(D0,tmp+28,28);
+
+	 for(i=0;i<16;i++)
+	 {
+		 Des_LS(C0,ls_num_table[i],Cx);
+		Des_LS(D0,ls_num_table[i],Dx);
+		memcpy(tmp,Cx,28);
+		memcpy(tmp+28,Dx,28);
+		 Des_PC_2(tmp,strSubKey[i]);
+		 memcpy(C0,Cx,28);
+		 memcpy(D0,Dx,28);
+		 }
+
+	 return 0;
+}
+
+//des算法IP置换
+int Des_IP(unsigned char* strIn, unsigned char* strOut)
+{
+	 int i;
+
+	 for(i=0;i<64;i++)
+	strOut[i] = strIn[ip_table[i]-1];
+
+	 return 64;
+}
+
+//des算法IP-1置换
+int Des_IP_1(unsigned char* strIn, unsigned char* strOut)
+{
+	 int i;
+
+	 for(i=0;i<64;i++)
+	 strOut[i] = strIn[ip_1_table[i]-1];
+
+	 return 64;
+}
+
+//des算法e变换，将32比特变成48比特
+int Des_E(unsigned char* strIn, unsigned char* strOut)
+{
+	 int i;
+
+	 for(i=0;i<48;i++)
+	strOut[i] = strIn[e_table[i]-1];
+
+	 return 48;
+}
+
+//des算法P变换
+int Des_P(unsigned char* strIn, unsigned char* strOut)
+{
+	int i;
+
+	 for(i=0;i<32;i++)
+	 strOut[i] = strIn[p_table[i]-1];
+
+	return 32;
+}
+
+//des算法S盒变换
+int Des_S_Box(unsigned char* strIn, int nSBox, unsigned char* strOut)
+{
+	 int x,y,i,nValue;
+	unsigned char c;
+
+	 if(nSBox < 1 || nSBox > 8)
+	 return -1;
+
+	 x = strIn[0] * 2 + strIn[5];
+	y = strIn[1] * 8 + strIn[2] * 4 + strIn[3] * 2 + strIn[4];
+
+	 nValue = s_box_table[nSBox-1][x][y];
+	 c = 0x08;
+	for(i=0;i<4;i++)
 	{
-		memcpy(Tmp, Li, 32);
-		F_func(Li, SubKey[i]);
-		Xor(Li, Ri, 32);
-		memcpy(Ri, Tmp, 32);
+		 strOut[i] = (nValue & c) >> (3 - i);
+		 c = c >> 1;
 	}
-    Transform(M, M, IPR_Table, 64);
-    BitToByte(Out, M, 64);
+
+	 return 4;
 }
-/********************设置密钥Կ*****************************/
-void Des_SetKey(const char Key[8])
+
+//des算法F函数，对Ri-1和Ki进行运算
+int Des_F(unsigned char* strR, unsigned char* strK, unsigned char* strOut)
 {
-    static bool K[64], *KL = &K[0], *KR = &K[28];
-    ByteToBit(K, Key, 64);
-    Transform(K, K, PC1_Table, 56);
-	int i;
-    for( i=0; i<16; i++) {
-        RotateL(KL, 28, LOOP_Table[i]);
-        RotateL(KR, 28, LOOP_Table[i]);
-        Transform(SubKey[i], K, PC2_Table, 48);
-    }
+	 int i,j,k;
+	 unsigned char strAftE[48],strPreP[32],sbIn[8][6],sbOut[8][4];
+
+	 for(i=0;i<48;i++)
+	 strAftE[i] = strR[e_table[i]-1];
+	 Do_XOR(strK, 48, strAftE);
+
+	 for(i=0;i<8;i++)
+	 for(j=0;j<6;j++)
+	 sbIn[i][j] = strAftE[i*6+j];
+
+	 for(i=0;i<8;i++)
+	Des_S_Box(sbIn[i], i+1, sbOut[i]);
+
+	 for(i=0;i<32;i++)
+	strPreP[i] = sbOut[i/4][i%4];
+	 Des_P(strPreP, strOut);
+
+	 return 32;
 }
-/*********************************************************/
-void F_func(bool In[32], const bool Ki[48])
-{
-    static bool MR[48];
-    Transform(MR, In, E_Table, 48);
-    Xor(MR, Ki, 48);
-    S_func(In, MR);
-    Transform(In, In, P_Table, 32);
-}
-void S_func(bool Out[32], const bool In[48])
-{
-	char i,j,k;
-    for( i=0,j,k; i<8; i++,In+=6,Out+=4) {
-        j = (In[0]<<1) + In[5];
-        k = (In[1]<<3) + (In[2]<<2) + (In[3]<<1) + In[4];
-		ByteToBit(Out, &S_Box[i][j][k], 4);
-    }
-}
-void Transform(bool *Out, bool *In, const char *Table, int len)
-{
-    static bool Tmp[256];
-	int i;
-    for( i=0; i<len; i++)
-        Tmp[i] = In[ Table[i]-1 ];
-    memcpy(Out, Tmp, len);
-}
-void Xor(bool *InA, const bool *InB, int len)
-{
-	int i;
-    for( i=0; i<len; i++)
-        InA[i] ^= InB[i];
-}
-void RotateL(bool *In, int len, int loop)
-{
-    static bool Tmp[256];
-    memcpy(Tmp, In, loop);
-    memcpy(In, In+loop, len-loop);
-    memcpy(In+len-loop, Tmp, loop);
-}
-void ByteToBit(bool *Out, const char *In, int bits)
-{
-	int i;
-    for( i=0; i<bits; i++)
-        Out[i] = (In[i/8]>>(i%8)) & 1;
-}
-void BitToByte(char *Out, const bool *In, int bits)
-{
-    memset(Out, 0, (bits+7)/8);
-	int i;
-    for( i=0; i<bits; i++)
-        Out[i/8] |= In[i]<<(i%8);
-}
-/********************* end *********************************/
