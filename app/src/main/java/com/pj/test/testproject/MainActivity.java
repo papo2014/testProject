@@ -1,6 +1,7 @@
 package com.pj.test.testproject;
 
 import android.content.Intent;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,7 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.pj.test.activity.TestActivity;
 import com.pj.test.util.DESTool;
+
+import net.sf.andpdf.pdfviewer.PdfViewerActivity;
 
 import java.io.UnsupportedEncodingException;
 import java.util.concurrent.ConcurrentHashMap;
@@ -21,8 +25,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static {
 
         System.loadLibrary("desjni");
-
+        System.loadLibrary("vudroid");
     }
+
+    private Button open_word;
+    private Button open_pdf;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +39,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_savaData.setOnClickListener(this);
         btn_jni = (Button)findViewById(R.id.btn_jni);
         btn_jni.setOnClickListener(this);
+        open_word = (Button)findViewById(R.id.open_word);
+        open_word.setOnClickListener(this);
+        open_pdf = (Button)findViewById(R.id.open_pdf);
+        open_pdf.setOnClickListener(this);
     }
 
     @Override
@@ -43,6 +55,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_jni:
                 Intent intent1 = new Intent(MainActivity.this,JniActivity.class);
                 startActivity(intent1);
+                break;
+            case R.id.open_word:
+                Intent intent2 = new Intent(MainActivity.this,TestActivity.class);
+                startActivity(intent2);
+                break;
+            case R.id.open_pdf:
+                Intent intent3 = new Intent(MainActivity.this,ShowPdfAcitivty.class);
+                intent3.putExtra(PdfViewerActivity.EXTRA_PDFFILENAME, Environment.getExternalStorageDirectory()+"/sse/603111_20160430_1.pdf");
+                startActivity(intent3);
                 break;
             default:
                 break;

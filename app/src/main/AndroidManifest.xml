@@ -4,6 +4,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,9 +20,17 @@
         </activity>
 
         <activity
+            android:name="com.pj.test.activity.TestActivity"/>
+        <activity
             android:name=".SaveDataActivity"/>
         <activity
             android:name=".JniActivity"/>
+        <activity
+            android:name=".PdfViewer"/>
+        <activity
+            android:name=".ShowPdfAcitivty"/>
+        <activity
+            android:name=".PdfActivity"/>
     </application>
 
 </manifest>

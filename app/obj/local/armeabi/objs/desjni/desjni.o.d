@@ -21,7 +21,8 @@ D:\git_project\testProject\app/obj/local/armeabi/objs/desjni/desjni.o: \
  D:\git_project\testProject\app/jni/desjni.h \
  D:/ndk/Jni/android-ndk-r9-windows-x86/android-ndk-r9/platforms/android-3/arch-arm/usr/include/string.h \
  D:/ndk/Jni/android-ndk-r9-windows-x86/android-ndk-r9/platforms/android-3/arch-arm/usr/include/malloc.h \
- D:/ndk/Jni/android-ndk-r9-windows-x86/android-ndk-r9/platforms/android-3/arch-arm/usr/include/android/log.h
+ D:/ndk/Jni/android-ndk-r9-windows-x86/android-ndk-r9/platforms/android-3/arch-arm/usr/include/android/log.h \
+ D:\git_project\testProject\app/jni/md5.h
 
 D:/ndk/Jni/android-ndk-r9-windows-x86/android-ndk-r9/platforms/android-3/arch-arm/usr/include/stdio.h:
 
@@ -66,3 +67,5 @@ D:/ndk/Jni/android-ndk-r9-windows-x86/android-ndk-r9/platforms/android-3/arch-ar
 D:/ndk/Jni/android-ndk-r9-windows-x86/android-ndk-r9/platforms/android-3/arch-arm/usr/include/malloc.h:
 
 D:/ndk/Jni/android-ndk-r9-windows-x86/android-ndk-r9/platforms/android-3/arch-arm/usr/include/android/log.h:
+
+D:\git_project\testProject\app/jni/md5.h:

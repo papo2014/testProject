@@ -9,6 +9,14 @@ extern "C" {
 #endif
 /*
  * Class:     com_pj_test_util_DESTool
+ * Method:    md5Encrypt
+ * Signature: (Ljava/lang/String;)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_com_pj_test_util_DESTool_md5Encrypt
+  (JNIEnv *, jclass, jstring);
+
+/*
+ * Class:     com_pj_test_util_DESTool
  * Method:    encrypt
  * Signature: (Ljava/lang/String;)Ljava/lang/String;
  */

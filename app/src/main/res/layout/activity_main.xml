@@ -25,5 +25,16 @@
         android:id="@+id/btn_jni"
         android:layout_gravity="center_horizontal" />
 
-
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="openWord"
+        android:id="@+id/open_word"
+        android:layout_gravity="center_horizontal" />
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="openWord"
+        android:id="@+id/open_pdf"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>

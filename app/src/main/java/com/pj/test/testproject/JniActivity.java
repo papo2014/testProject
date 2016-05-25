@@ -34,7 +34,7 @@ public class JniActivity extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_encrypt:
-                String string = "0x1232abcd";
+                String string = "1232abcd";
                  s = DESTool.encrypt(string);
                 Toast.makeText(JniActivity.this,"加密后："+s,Toast.LENGTH_SHORT).show();
                 Log.e("testJni",s);

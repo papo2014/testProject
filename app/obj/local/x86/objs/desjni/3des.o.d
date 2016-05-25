@@ -23,6 +23,7 @@ D:\git_project\testProject\app/obj/local/x86/objs/desjni/3des.o: \
  D:/ndk/Jni/android-ndk-r9-windows-x86/android-ndk-r9/platforms/android-9/arch-x86/usr/include/alloca.h \
  D:/ndk/Jni/android-ndk-r9-windows-x86/android-ndk-r9/platforms/android-9/arch-x86/usr/include/strings.h \
  D:/ndk/Jni/android-ndk-r9-windows-x86/android-ndk-r9/platforms/android-9/arch-x86/usr/include/memory.h \
+ D:/ndk/Jni/android-ndk-r9-windows-x86/android-ndk-r9/platforms/android-9/arch-x86/usr/include/android/log.h \
  D:\git_project\testProject\app/jni/3des.h
 
 D:/ndk/Jni/android-ndk-r9-windows-x86/android-ndk-r9/platforms/android-9/arch-x86/usr/include/stdio.h:
@@ -70,5 +71,7 @@ D:/ndk/Jni/android-ndk-r9-windows-x86/android-ndk-r9/platforms/android-9/arch-x8
 D:/ndk/Jni/android-ndk-r9-windows-x86/android-ndk-r9/platforms/android-9/arch-x86/usr/include/strings.h:
 
 D:/ndk/Jni/android-ndk-r9-windows-x86/android-ndk-r9/platforms/android-9/arch-x86/usr/include/memory.h:
+
+D:/ndk/Jni/android-ndk-r9-windows-x86/android-ndk-r9/platforms/android-9/arch-x86/usr/include/android/log.h:
 
 D:\git_project\testProject\app/jni/3des.h:

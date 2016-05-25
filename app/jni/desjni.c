@@ -8,6 +8,8 @@
 #include "desjni.h"
 #include <string.h>
 #include<android/log.h>
+#include "md5.h"
+
 //#include <windows.h>
 #define TAG "myDemo-jni" // 这个是自定义的LOG的标识
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG,TAG ,__VA_ARGS__) // 定义LOGD类型
@@ -108,9 +110,9 @@ JNIEXPORT jstring JNICALL Java_com_pj_test_util_DESTool_decrypt
  */
 JNIEXPORT jstring JNICALL Java_com_pj_test_util_DESTool_encrypt
         (JNIEnv *env, jclass cls, jstring string) {
-    char dest16[16+1];
+    unsigned char dest16[16+1];
 //    char cipher[64];//可以先分配一个足够大的存储空间存储中间密文结果
-   char src16[16+1];
+    unsigned char src16[16+1];
 //    memset(dest16,0,sizeof(dest16));
 ////    memset(key,0,sizeof(key));
 //    memset(src16,0,sizeof(src16));
@@ -132,8 +134,28 @@ JNIEXPORT jstring JNICALL Java_com_pj_test_util_DESTool_encrypt
 //    jstr = CStr2Jstring(env,cipher);
 //    LOGI("James Native Function4: %s", jstr);
     jstr = CStr2Jstring(env,dest16);
+//    LOGI("James Native Function2: %s", jstr);
     return jstr;
 
 }
 
+JNIEXPORT jstring JNICALL Java_com_pj_test_util_DESTool_md5Encrypt
+        (JNIEnv *env, jclass cls, jstring string) {
+    char* szText = (char*)(*env)->GetStringUTFChars(env, string, 0);
 
+    MD5_CTX context = { 0 };
+    MD5Init(&context);
+    MD5Update(&context, szText, strlen(szText));
+    unsigned char dest[16] = { 0 };
+    MD5Final(dest, &context);
+    (*env)->ReleaseStringUTFChars(env, string, szText);
+
+    int i = 0;
+    char szMd5[32] = { 0 };
+    for (i = 0; i < 16; i++)
+    {
+        sprintf(szMd5, "%s%02x", szMd5, dest[i]);
+    }
+
+    return (*env)->NewStringUTF(env, szMd5);
+}

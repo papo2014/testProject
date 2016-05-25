@@ -27,6 +27,14 @@ JNIEXPORT jstring JNICALL Java_com_pj_test_util_DESTool_decrypt
  */
 JNIEXPORT jstring JNICALL Java_com_pj_test_util_DESTool_encrypt
         (JNIEnv *, jclass, jstring);
+/*
+ * Class:     com_pj_test_util_DESTool
+ * Method:    a
+ * Signature: (Ljava/lang/String;)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_com_pj_test_util_DESTool_md5Encrypt
+        (JNIEnv *, jclass, jstring);
+
 
 #ifdef __cplusplus
 }
